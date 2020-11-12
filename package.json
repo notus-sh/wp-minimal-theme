@@ -1,5 +1,5 @@
 {
-	"name": "twentytwenty",
+	"name": "mt",
 	"version": "1.5.0",
 	"description": "Default WP Theme",
 	"author": "The WordPress Contributors",
@@ -7,15 +7,15 @@
 	"keywords": [
 		"WordPress",
 		"Theme",
-		"TwentyTwenty"
+		"Mt"
 	],
-	"homepage": "https://github.com/wordpress/twentytwenty#readme",
+	"homepage": "https://github.com/wordpress/mt#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/wordpress/twentytwenty.git"
+		"url": "git+https://github.com/wordpress/mt.git"
 	},
 	"bugs": {
-		"url": "https://github.com/wordpress/twentytwenty/issues"
+		"url": "https://github.com/wordpress/mt/issues"
 	},
 	"devDependencies": {
 		"@wordpress/browserslist-config": "^2.6.0",

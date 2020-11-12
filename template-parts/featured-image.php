@@ -3,8 +3,8 @@
  * Displays the featured image
  *
  * @package WordPress
- * @subpackage Twenty_Twenty
- * @since Twenty Twenty 1.0
+ * @subpackage mt
+ * @since mt 1.0
  */
 
 if ( has_post_thumbnail() && ! post_password_required() ) {
