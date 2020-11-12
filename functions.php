@@ -63,6 +63,8 @@ function mt_theme_support()
     
     // Add support for full and wide align images.
     add_theme_support('align-wide');
+    // Add support for responsive embeds.
+    add_theme_support('responsive-embeds');
     
     /*
        * Make theme available for translation.
@@ -71,9 +73,6 @@ function mt_theme_support()
        * to change 'mt' to the name of your theme in all the template files.
        */
     load_theme_textdomain('mt');
-    
-    // Add support for responsive embeds.
-    add_theme_support('responsive-embeds');
     
     /*
        * Adds starter content to highlight the theme on fresh sites.
