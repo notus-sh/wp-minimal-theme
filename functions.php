@@ -80,14 +80,6 @@ function mt_theme_support()
     add_theme_support('disable-custom-font-sizes'); // No custom font sizes
     add_theme_support('editor-font-sizes', []); // No font size control at all
     
-    /*
-       * Make theme available for translation.
-       * Translations can be filed in the /languages/ directory.
-       * If you're building a theme based on mt, use a find and replace
-       * to change 'mt' to the name of your theme in all the template files.
-       */
-    load_theme_textdomain('mt');
-    
     // Add theme support for selective refresh for widgets.
     add_theme_support('customize-selective-refresh-widgets');
     
@@ -100,6 +92,13 @@ function mt_theme_support()
 }
 
 add_action('after_setup_theme', 'mt_theme_support');
+
+
+function mt_load_textdomain() {
+    load_theme_textdomain('mt', get_template_directory() . '/locales/');
+}
+
+add_action('after_setup_theme', 'mt_load_textdomain');
 
 /**
  * REQUIRED FILES
