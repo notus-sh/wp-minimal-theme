@@ -66,6 +66,20 @@ function mt_theme_support()
     // Add support for responsive embeds.
     add_theme_support('responsive-embeds');
     
+    /**
+     * Configure Gutenberg
+     */
+    add_theme_support('editor-styles');
+    
+    // Colors
+    add_theme_support('disable-custom-colors'); // No color pickers
+    add_theme_support('disable-custom-gradients'); // No custom gradients
+    add_theme_support('editor-color-palette', []); // No colors at all
+    
+    // Fonts
+    add_theme_support('disable-custom-font-sizes'); // No custom font sizes
+    add_theme_support('editor-font-sizes', []); // No font size control at all
+    
     /*
        * Make theme available for translation.
        * Translations can be filed in the /languages/ directory.
@@ -369,78 +383,6 @@ function mt_add_classic_editor_non_latin_styles($mce_init)
 }
 
 add_filter('tiny_mce_before_init', 'mt_add_classic_editor_non_latin_styles');
-
-/**
- * Block Editor Settings.
- * Add custom colors and font sizes to the block editor.
- */
-function mt_block_editor_settings()
-{
-    // Block Editor Palette.
-    add_theme_support('editor-color-palette', array(
-      array(
-        'name' => __('Accent Color', 'mt'),
-        'slug' => 'accent',
-        'color' => mt_get_color_for_area('content', 'accent'),
-      ),
-      array(
-        'name' => __('Primary', 'mt'),
-        'slug' => 'primary',
-        'color' => mt_get_color_for_area('content', 'text'),
-      ),
-      array(
-        'name' => __('Secondary', 'mt'),
-        'slug' => 'secondary',
-        'color' => mt_get_color_for_area('content', 'secondary'),
-      ),
-      array(
-        'name' => __('Subtle Background', 'mt'),
-        'slug' => 'subtle-background',
-        'color' => mt_get_color_for_area('content', 'borders'),
-      ),
-    ));
-    
-    // Block Editor Font Sizes.
-    add_theme_support(
-      'editor-font-sizes',
-      array(
-        array(
-          'name' => _x('Small', 'Name of the small font size in the block editor', 'mt'),
-          'shortName' => _x('S', 'Short name of the small font size in the block editor.', 'mt'),
-          'size' => 18,
-          'slug' => 'small',
-        ),
-        array(
-          'name' => _x('Regular', 'Name of the regular font size in the block editor', 'mt'),
-          'shortName' => _x('M', 'Short name of the regular font size in the block editor.', 'mt'),
-          'size' => 21,
-          'slug' => 'normal',
-        ),
-        array(
-          'name' => _x('Large', 'Name of the large font size in the block editor', 'mt'),
-          'shortName' => _x('L', 'Short name of the large font size in the block editor.', 'mt'),
-          'size' => 26.25,
-          'slug' => 'large',
-        ),
-        array(
-          'name' => _x('Larger', 'Name of the larger font size in the block editor', 'mt'),
-          'shortName' => _x('XL', 'Short name of the larger font size in the block editor.', 'mt'),
-          'size' => 32,
-          'slug' => 'larger',
-        ),
-      )
-    );
-    
-    add_theme_support('editor-styles');
-    
-    // If we have a dark background color then add support for dark editor style.
-    // We can determine if the background color is dark by checking if the text-color is white.
-    if ('#ffffff' === strtolower(mt_get_color_for_area('content', 'text'))) {
-        add_theme_support('dark-editor-style');
-    }
-}
-
-add_action('after_setup_theme', 'mt_block_editor_settings');
 
 /**
  * Overwrite default more tag with styling and screen reader markup.
