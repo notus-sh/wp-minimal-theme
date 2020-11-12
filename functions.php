@@ -47,12 +47,7 @@ function mt_theme_support()
     set_post_thumbnail_size(1200, 9999);          // Set post thumbnail size.
     add_image_size('mt-fullscreen', 1980, 9999);  // Add custom image size used in Cover Template.
     
-    /*
-       * Let WordPress manage the document title.
-       * By adding theme support, we declare that this theme does not use a
-       * hard-coded <title> tag in the document head, and expect WordPress to
-       * provide it for us.
-       */
+    // Let WordPress manage the document title.
     add_theme_support('title-tag');
     
     /*
