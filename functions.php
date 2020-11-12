@@ -61,6 +61,9 @@ function mt_theme_support()
         'style',
     ]);
     
+    // Add support for full and wide align images.
+    add_theme_support('align-wide');
+    
     /*
        * Make theme available for translation.
        * Translations can be filed in the /languages/ directory.
@@ -68,9 +71,6 @@ function mt_theme_support()
        * to change 'mt' to the name of your theme in all the template files.
        */
     load_theme_textdomain('mt');
-    
-    // Add support for full and wide align images.
-    add_theme_support('align-wide');
     
     // Add support for responsive embeds.
     add_theme_support('responsive-embeds');
