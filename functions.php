@@ -109,12 +109,6 @@ require get_template_directory() . '/classes/class-mt-walker-comment.php';
 // Custom page walker.
 require get_template_directory() . '/classes/class-mt-walker-page.php';
 
-// Non-latin language handling.
-require get_template_directory() . '/classes/class-mt-non-latin-languages.php';
-
-// Custom CSS.
-require get_template_directory() . '/inc/custom-css.php';
-
 /**
  * Register and Enqueue Styles.
  */
@@ -147,23 +141,6 @@ function mt_register_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'mt_register_scripts');
-
-/** Enqueue non-latin language styles
- *
- * @return void
- * @since mt 1.0
- *
- */
-function mt_non_latin_languages()
-{
-    $custom_css = Mt_Non_Latin_Languages::get_non_latin_css('front-end');
-    
-    if ($custom_css) {
-        wp_add_inline_style('mt-style', $custom_css);
-    }
-}
-
-add_action('wp_enqueue_scripts', 'mt_non_latin_languages');
 
 /**
  * Register navigation menus uses wp_nav_menu in five places.
@@ -260,9 +237,6 @@ function mt_block_editor_styles()
     );
     wp_style_add_data('mt-block-editor-styles', 'rtl', 'replace');
     
-    // Add inline style for non-latin fonts.
-    wp_add_inline_style('mt-block-editor-styles', Mt_Non_Latin_Languages::get_non_latin_css('block-editor'));
-    
     // Enqueue the editor script.
     wp_enqueue_script(
       'mt-block-editor-script',
@@ -288,33 +262,6 @@ function mt_classic_editor_styles()
 }
 
 add_action('init', 'mt_classic_editor_styles');
-
-/**
- * Output non-latin font styles in the classic editor.
- * Adds styles to the head of the TinyMCE iframe. Kudos to @Otto42 for the original solution.
- *
- * @param array $mce_init TinyMCE styles.
- * @return array TinyMCE styles.
- */
-function mt_add_classic_editor_non_latin_styles($mce_init)
-{
-    $styles = Mt_Non_Latin_Languages::get_non_latin_css('classic-editor');
-    
-    // Return if there are no styles to add.
-    if (!$styles) {
-        return $mce_init;
-    }
-    
-    if (!isset($mce_init['content_style'])) {
-        $mce_init['content_style'] = $styles . ' ';
-    } else {
-        $mce_init['content_style'] .= ' ' . $styles . ' ';
-    }
-    
-    return $mce_init;
-}
-
-add_filter('tiny_mce_before_init', 'mt_add_classic_editor_non_latin_styles');
 
 /**
  * Overwrite default more tag with styling and screen reader markup.
