@@ -43,50 +43,9 @@ if (!class_exists('Mt_Customize')) {
               )
             );
             
-            $wp_customize->selective_refresh->add_partial(
-              'custom_logo',
-              array(
-                'selector' => '.header-titles [class*=site-]:not(.site-description)',
-                'render_callback' => 'mt_customize_partial_site_logo',
-              )
-            );
-            
-            $wp_customize->selective_refresh->add_partial(
-              'retina_logo',
-              array(
-                'selector' => '.header-titles [class*=site-]:not(.site-description)',
-                'render_callback' => 'mt_customize_partial_site_logo',
-              )
-            );
-            
             /**
              * Site Identity
              */
-            
-            /* 2X Header Logo ---------------- */
-            $wp_customize->add_setting(
-              'retina_logo',
-              array(
-                'capability' => 'edit_theme_options',
-                'sanitize_callback' => array(__CLASS__, 'sanitize_checkbox'),
-                'transport' => 'postMessage',
-              )
-            );
-            
-            $wp_customize->add_control(
-              'retina_logo',
-              array(
-                'type' => 'checkbox',
-                'section' => 'title_tagline',
-                'priority' => 10,
-                'label' => __('Retina logo', 'mt'),
-                'description' => __(
-                  'Scales the logo to half its uploaded size, making it sharp on high-res screens.',
-                  'mt'
-                ),
-              )
-            );
-            
             // Header & Footer Background Color.
             $wp_customize->add_setting(
               'header_footer_background_color',
@@ -491,18 +450,6 @@ if (!function_exists('mt_customize_partial_blogdescription')) {
     function mt_customize_partial_blogdescription()
     {
         bloginfo('description');
-    }
-}
-
-if (!function_exists('mt_customize_partial_site_logo')) {
-    /**
-     * Render the site logo for the selective refresh partial.
-     *
-     * Doing it this way so we don't have issues with `render_callback`'s arguments.
-     */
-    function mt_customize_partial_site_logo()
-    {
-        mt_site_logo();
     }
 }
 

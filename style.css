@@ -5623,10 +5623,6 @@ a.to-the-top > * {
     margin: 1rem 0 0 2.4rem;
   }
 
-  .wp-custom-logo .header-titles {
-    align-items: center;
-  }
-
   /* HEADER NAVIGATION */
   .header-navigation-wrapper {
     align-items: center;

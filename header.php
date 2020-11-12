@@ -65,11 +65,17 @@ wp_body_open();
         } ?>
 
       <div class="header-titles">
-          
+          <?php if ((is_front_page() || is_home()) && !is_page()): ?>
+              <h1 class="site-title">
+                  <a href="<?php echo esc_url(get_home_url(null, '/')) ?>"><?php echo esc_html(get_bloginfo('name')); ?></a>
+              </h1>
+          <?php else: ?>
+              <div class="site-title faux-heading">
+                  <a href="<?php echo esc_url(get_home_url(null, '/')) ?>"><?php echo esc_html(get_bloginfo('name')); ?></a>
+              </div>
+          <?php endif; ?>
+
           <?php
-          // Site title or logo.
-          mt_site_logo();
-          
           // Site description.
           mt_site_description();
           ?>

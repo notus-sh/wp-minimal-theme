@@ -9,7 +9,7 @@
 
 /**
  * Table of Contents:
- * Logo & Description
+ * Description
  * Comments
  * Post Meta
  * Menus
@@ -19,7 +19,7 @@
  */
 
 /**
- * Logo & Description
+ * Description
  */
 
 /**
