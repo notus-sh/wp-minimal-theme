@@ -51,10 +51,9 @@
                         </div>
                     <?php endif; ?>
           
-                    <?php
-                    // Site description.
-                    mt_site_description();
-                    ?>
+                    <?php if ($description = get_bloginfo('description')): ?>
+                        <div class="site-description"><?php echo $description; ?></div>
+                    <?php endif; ?>
                 </div><!-- .header-titles -->
     
                 <button class="toggle nav-toggle mobile-nav-toggle" data-toggle-target=".menu-modal"
