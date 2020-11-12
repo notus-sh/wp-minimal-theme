@@ -19,10 +19,8 @@
 
         <button class="toggle close-nav-toggle fill-children-current-color" data-toggle-target=".menu-modal"
                 data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".menu-modal">
-          <span class="toggle-text"><?php
-              _e('Close Menu', 'mt'); ?></span>
-            <?php
-            mt_the_theme_svg('cross'); ?>
+          <span class="toggle-text"><?php _e('Close Menu', 'mt'); ?></span>
+          ⨯
         </button><!-- .nav-toggle -->
           
           <?php

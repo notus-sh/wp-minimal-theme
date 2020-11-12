@@ -31,7 +31,7 @@
                         data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field"
                         aria-expanded="false">
                     <span class="toggle-inner">
-                        <span class="toggle-icon"><?php mt_the_theme_svg('search'); ?></span>
+                        <span class="toggle-icon">🔎</span>
                         <span class="toggle-text"><?php _e('Search', 'mt'); ?></span>
                     </span>
                 </button><!-- .search-toggle -->
@@ -60,7 +60,7 @@
                 <button class="toggle nav-toggle mobile-nav-toggle" data-toggle-target=".menu-modal"
                       data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
                     <span class="toggle-inner">
-                        <span class="toggle-icon"><?php mt_the_theme_svg('ellipsis'); ?></span>
+                        <span class="toggle-icon">…</span>
                         <span class="toggle-text"><?php _e('Menu', 'mt'); ?></span>
                     </span>
                 </button><!-- .nav-toggle -->
@@ -105,7 +105,7 @@
                                 data-set-focus=".close-nav-toggle">
                             <span class="toggle-inner">
                                 <span class="toggle-text"><?php _e('Menu', 'mt'); ?></span>
-                                <span class="toggle-icon"><?php mt_the_theme_svg('ellipsis'); ?></span>
+                                <span class="toggle-icon">…</span>
                             </span>
                         </button><!-- .nav-toggle -->
                     </div><!-- .nav-toggle-wrapper -->
@@ -116,7 +116,7 @@
                               data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field"
                               aria-expanded="false">
                             <span class="toggle-inner">
-                              <?php mt_the_theme_svg('search'); ?>
+                              🔎
                               <span class="toggle-text"><?php _e('Search', 'mt'); ?></span>
                             </span>
                         </button><!-- .search-toggle -->

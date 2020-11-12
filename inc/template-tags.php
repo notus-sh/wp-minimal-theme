@@ -215,11 +215,7 @@ function mt_edit_post_link($link, $post_id, $text)
       get_the_title($post_id)
     );
     
-    return '<div class="post-meta-wrapper post-meta-edit-link-wrapper"><ul class="post-meta"><li class="post-edit meta-wrapper"><span class="meta-icon">' . mt_get_theme_svg(
-        'edit'
-      ) . '</span><span class="meta-text"><a href="' . esc_url(
-        $edit_url
-      ) . '">' . $text . '</a></span></li></ul><!-- .post-meta --></div><!-- .post-meta-wrapper -->';
+    return '<div class="post-meta-wrapper post-meta-edit-link-wrapper"><ul class="post-meta"><li class="post-edit meta-wrapper"><span class="meta-icon">🖉</span><span class="meta-text"><a href="' . esc_url($edit_url) . '">' . $text . '</a></span></li></ul><!-- .post-meta --></div><!-- .post-meta-wrapper -->';
 }
 
 add_filter('edit_post_link', 'mt_edit_post_link', 10, 3);
@@ -348,10 +344,8 @@ function mt_get_post_meta($post_id = null, $location = 'single-top')
                 ?>
               <li class="post-author meta-wrapper">
 						<span class="meta-icon">
-							<span class="screen-reader-text"><?php
-                  _e('Post author', 'mt'); ?></span>
-							<?php
-              mt_the_theme_svg('user'); ?>
+							<span class="screen-reader-text"><?php _e('Post author', 'mt'); ?></span>
+							
 						</span>
                 <span class="meta-text">
 							<?php
@@ -373,17 +367,13 @@ function mt_get_post_meta($post_id = null, $location = 'single-top')
                 $has_meta = true;
                 ?>
               <li class="post-date meta-wrapper">
-						<span class="meta-icon">
-							<span class="screen-reader-text"><?php
-                  _e('Post date', 'mt'); ?></span>
-							<?php
-              mt_the_theme_svg('calendar'); ?>
-						</span>
+                <span class="meta-icon">
+                  <span class="screen-reader-text"><?php _e('Post date', 'mt'); ?></span>
+                  📅
+                </span>
                 <span class="meta-text">
-							<a href="<?php
-              the_permalink(); ?>"><?php
-                  the_time(get_option('date_format')); ?></a>
-						</span>
+                  <a href="<?php the_permalink(); ?>"><?php the_time(get_option('date_format')); ?></a>
+                </span>
               </li>
                 <?php
             }
@@ -393,17 +383,13 @@ function mt_get_post_meta($post_id = null, $location = 'single-top')
                 $has_meta = true;
                 ?>
               <li class="post-categories meta-wrapper">
-						<span class="meta-icon">
-							<span class="screen-reader-text"><?php
-                  _e('Categories', 'mt'); ?></span>
-							<?php
-              mt_the_theme_svg('folder'); ?>
-						</span>
+                <span class="meta-icon">
+                  <span class="screen-reader-text"><?php _e('Categories', 'mt'); ?></span>
+                  📂
+                </span>
                 <span class="meta-text">
-							<?php
-              _ex('In', 'A string that is output before one or more categories', 'mt'); ?><?php
-              the_category(', '); ?>
-						</span>
+                  <?php _ex('In', 'A string that is output before one or more categories', 'mt'); ?><?php the_category(', '); ?>
+                </span>
               </li>
                 <?php
             }
@@ -413,16 +399,13 @@ function mt_get_post_meta($post_id = null, $location = 'single-top')
                 $has_meta = true;
                 ?>
               <li class="post-tags meta-wrapper">
-						<span class="meta-icon">
-							<span class="screen-reader-text"><?php
-                  _e('Tags', 'mt'); ?></span>
-							<?php
-              mt_the_theme_svg('tag'); ?>
-						</span>
+                <span class="meta-icon">
+                  <span class="screen-reader-text"><?php _e('Tags', 'mt'); ?></span>
+                  🔖
+                </span>
                 <span class="meta-text">
-							<?php
-              the_tags('', ', ', ''); ?>
-						</span>
+                  <?php the_tags('', ', ', ''); ?>
+                </span>
               </li>
                 <?php
             }
@@ -433,14 +416,8 @@ function mt_get_post_meta($post_id = null, $location = 'single-top')
                 $has_meta = true;
                 ?>
               <li class="post-comment-link meta-wrapper">
-						<span class="meta-icon">
-							<?php
-              mt_the_theme_svg('comment'); ?>
-						</span>
-                <span class="meta-text">
-							<?php
-              comments_popup_link(); ?>
-						</span>
+						    <span class="meta-icon">🗪</span>
+                <span class="meta-text"><?php comments_popup_link(); ?></span>
               </li>
                 <?php
             }
@@ -450,14 +427,8 @@ function mt_get_post_meta($post_id = null, $location = 'single-top')
                 $has_meta = true;
                 ?>
               <li class="post-sticky meta-wrapper">
-						<span class="meta-icon">
-							<?php
-              mt_the_theme_svg('bookmark'); ?>
-						</span>
-                <span class="meta-text">
-							<?php
-              _e('Sticky post', 'mt'); ?>
-						</span>
+						    <span class="meta-icon">⭐ </span>
+                <span class="meta-text"><?php _e('Sticky post', 'mt'); ?> </span>
               </li>
                 <?php
             }
@@ -564,7 +535,7 @@ function mt_add_sub_toggles_to_main_menu($args, $item, $depth)
               ) . '" aria-expanded="false"><span class="screen-reader-text">' . __(
                 'Show sub menu',
                 'mt'
-              ) . '</span>' . mt_get_theme_svg('chevron-down') . '</button>';
+              ) . '</span>⌄</button>';
         }
         
         // Close the wrapper.
@@ -582,31 +553,6 @@ function mt_add_sub_toggles_to_main_menu($args, $item, $depth)
 }
 
 add_filter('nav_menu_item_args', 'mt_add_sub_toggles_to_main_menu', 10, 3);
-
-/**
- * Displays SVG icons in social links menu.
- *
- * @param string   $item_output The menu item's starting HTML output.
- * @param WP_Post  $item        Menu item data object.
- * @param int      $depth       Depth of the menu. Used for padding.
- * @param stdClass $args        An object of wp_nav_menu() arguments.
- * @return string The menu item output with social icon.
- */
-function mt_nav_menu_social_icons($item_output, $item, $depth, $args)
-{
-    // Change SVG icon inside social links menu if there is supported URL.
-    if ('social' === $args->theme_location) {
-        $svg = Mt_SVG_Icons::get_social_link_svg($item->url);
-        if (empty($svg)) {
-            $svg = mt_get_theme_svg('link');
-        }
-        $item_output = str_replace($args->link_after, '</span>' . $svg, $item_output);
-    }
-    
-    return $item_output;
-}
-
-add_filter('walker_nav_menu_start_el', 'mt_nav_menu_social_icons', 10, 4);
 
 /**
  * Classes

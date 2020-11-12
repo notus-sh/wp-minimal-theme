@@ -112,7 +112,7 @@ if (!class_exists('Mt_Walker_Page')) {
                       ) . '" aria-expanded="false"><span class="screen-reader-text">' . __(
                         'Show sub menu',
                         'mt'
-                      ) . '</span>' . mt_get_theme_svg('chevron-down') . '</button>';
+                      ) . '</span>⌄</button>';
                 }
                 
                 // Close the wrapper.

@@ -96,10 +96,6 @@ add_action('after_setup_theme', 'mt_load_textdomain');
  */
 require get_template_directory() . '/inc/template-tags.php';
 
-// Handle SVG icons.
-require get_template_directory() . '/classes/class-mt-svg-icons.php';
-require get_template_directory() . '/inc/svg-icons.php';
-
 // Require Separator Control class.
 require get_template_directory() . '/classes/class-mt-separator-control.php';
 

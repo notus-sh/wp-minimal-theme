@@ -74,14 +74,10 @@ the_ID(); ?>">
                   ?>
 
                 <div class="to-the-content-wrapper">
-
                   <a href="#post-inner" class="to-the-content fill-children-current-color">
-                      <?php
-                      mt_the_theme_svg('arrow-down'); ?>
-                    <div class="screen-reader-text"><?php
-                        _e('Scroll Down', 'mt'); ?></div>
+                    ↓
+                    <div class="screen-reader-text"><?php _e('Scroll Down', 'mt'); ?></div>
                   </a><!-- .to-the-content -->
-
                 </div><!-- .to-the-content-wrapper -->
                   
                   <?php
