@@ -36,14 +36,6 @@ function mt_theme_support()
     // Add default posts and comments RSS feed links to head.
     add_theme_support('automatic-feed-links');
     
-    // Custom background color.
-    add_theme_support(
-      'custom-background',
-      array(
-        'default-color' => 'f5efe0',
-      )
-    );
-    
     // Set content-width.
     global $content_width;
     if (!isset($content_width)) {
@@ -489,7 +481,7 @@ add_filter('tiny_mce_before_init', 'mt_add_classic_editor_non_latin_styles');
 function mt_block_editor_settings()
 {
     // Block Editor Palette.
-    $editor_color_palette = array(
+    add_theme_support('editor-color-palette', array(
       array(
         'name' => __('Accent Color', 'mt'),
         'slug' => 'accent',
@@ -510,24 +502,7 @@ function mt_block_editor_settings()
         'slug' => 'subtle-background',
         'color' => mt_get_color_for_area('content', 'borders'),
       ),
-    );
-    
-    // Add the background option.
-    $background_color = get_theme_mod('background_color');
-    if (!$background_color) {
-        $background_color_arr = get_theme_support('custom-background');
-        $background_color = $background_color_arr[0]['default-color'];
-    }
-    $editor_color_palette[] = array(
-      'name' => __('Background Color', 'mt'),
-      'slug' => 'background',
-      'color' => '#' . $background_color,
-    );
-    
-    // If we have accent colors, add them to the block editor palette.
-    if ($editor_color_palette) {
-        add_theme_support('editor-color-palette', $editor_color_palette);
-    }
+    ));
     
     // Block Editor Font Sizes.
     add_theme_support(
