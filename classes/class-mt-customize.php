@@ -22,28 +22,6 @@ if (!class_exists('Mt_Customize')) {
         public static function register($wp_customize)
         {
             /**
-             * Site Title & Description.
-             * */
-            $wp_customize->get_setting('blogname')->transport = 'postMessage';
-            $wp_customize->get_setting('blogdescription')->transport = 'postMessage';
-            
-            $wp_customize->selective_refresh->add_partial(
-              'blogname',
-              array(
-                'selector' => '.site-title a',
-                'render_callback' => 'mt_customize_partial_blogname',
-              )
-            );
-            
-            $wp_customize->selective_refresh->add_partial(
-              'blogdescription',
-              array(
-                'selector' => '.site-description',
-                'render_callback' => 'mt_customize_partial_blogdescription',
-              )
-            );
-            
-            /**
              * Site Identity
              */
             // Header & Footer Background Color.
@@ -151,9 +129,6 @@ if (!class_exists('Mt_Customize')) {
                 )
               )
             );
-            
-            // Update background color with postMessage, so inline CSS output is updated as well.
-            $wp_customize->get_setting('background_color')->transport = 'postMessage';
             
             /**
              * Theme Options
@@ -273,14 +248,6 @@ if (!class_exists('Mt_Customize')) {
               )
             );
             
-            $wp_customize->selective_refresh->add_partial(
-              'cover_template_fixed_background',
-              array(
-                'selector' => '.cover-header',
-                'type' => 'cover_fixed',
-              )
-            );
-            
             /* Separator --------------------- */
             
             $wp_customize->add_setting(
@@ -365,14 +332,6 @@ if (!class_exists('Mt_Customize')) {
                 'input_attrs' => mt_customize_opacity_range(),
               )
             );
-            
-            $wp_customize->selective_refresh->add_partial(
-              'cover_template_overlay_opacity',
-              array(
-                'selector' => '.cover-color-overlay',
-                'type' => 'cover_opacity',
-              )
-            );
         }
         
         /**
@@ -428,29 +387,6 @@ if (!class_exists('Mt_Customize')) {
     
     // Setup the Theme Customizer settings and controls.
     add_action('customize_register', array('Mt_Customize', 'register'));
-}
-
-/**
- * PARTIAL REFRESH FUNCTIONS
- * */
-if (!function_exists('mt_customize_partial_blogname')) {
-    /**
-     * Render the site title for the selective refresh partial.
-     */
-    function mt_customize_partial_blogname()
-    {
-        bloginfo('name');
-    }
-}
-
-if (!function_exists('mt_customize_partial_blogdescription')) {
-    /**
-     * Render the site description for the selective refresh partial.
-     */
-    function mt_customize_partial_blogdescription()
-    {
-        bloginfo('description');
-    }
 }
 
 /**

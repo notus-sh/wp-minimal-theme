@@ -79,9 +79,6 @@ function mt_theme_support()
     // Fonts
     add_theme_support('disable-custom-font-sizes'); // No custom font sizes
     add_theme_support('editor-font-sizes', []); // No font size control at all
-    
-    // Add theme support for selective refresh for widgets.
-    add_theme_support('customize-selective-refresh-widgets');
 }
 
 add_action('after_setup_theme', 'mt_theme_support');
@@ -434,39 +431,6 @@ function mt_customize_controls_enqueue_scripts()
 }
 
 add_action('customize_controls_enqueue_scripts', 'mt_customize_controls_enqueue_scripts');
-
-/**
- * Enqueue scripts for the customizer preview.
- *
- * @return void
- * @since mt 1.0
- *
- */
-function mt_customize_preview_init()
-{
-    $theme_version = wp_get_theme()->get('Version');
-    
-    wp_enqueue_script(
-      'mt-customize-preview',
-      get_theme_file_uri('/assets/js/customize-preview.js'),
-      array('customize-preview', 'customize-selective-refresh', 'jquery'),
-      $theme_version,
-      true
-    );
-    wp_localize_script('mt-customize-preview', 'mtBgColors', mt_get_customizer_color_vars());
-    wp_localize_script('mt-customize-preview', 'mtPreviewEls', mt_get_elements_array());
-    
-    wp_add_inline_script(
-      'mt-customize-preview',
-      sprintf(
-        'wp.customize.selectiveRefresh.partialConstructor[ %1$s ].prototype.attrs = %2$s;',
-        wp_json_encode('cover_opacity'),
-        wp_json_encode(mt_customize_opacity_range())
-      )
-    );
-}
-
-add_action('customize_preview_init', 'mt_customize_preview_init');
 
 /**
  * Get accessible color for an area.
