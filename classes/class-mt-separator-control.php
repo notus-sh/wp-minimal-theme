@@ -2,25 +2,26 @@
 /**
  * Customizer Separator Control settings for this theme.
  *
- * @package WordPress
+ * @package    WordPress
  * @subpackage mt
- * @since mt 1.0
+ * @since      mt 1.0
  */
 
-if ( class_exists( 'WP_Customize_Control' ) ) {
-
-	if ( ! class_exists( 'Mt_Separator_Control' ) ) {
-		/**
-		 * Separator Control.
-		 */
-		class Mt_Separator_Control extends WP_Customize_Control {
-			/**
-			 * Render the hr.
-			 */
-			public function render_content() {
-				echo '<hr/>';
-			}
-
-		}
-	}
+if (class_exists('WP_Customize_Control')) {
+    if (!class_exists('Mt_Separator_Control')) {
+        /**
+         * Separator Control.
+         */
+        class Mt_Separator_Control extends WP_Customize_Control
+        {
+            /**
+             * Render the hr.
+             */
+            public function render_content()
+            {
+                echo '<hr/>';
+            }
+            
+        }
+    }
 }

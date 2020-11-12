@@ -2,42 +2,43 @@
 /**
  * Displays the featured image
  *
- * @package WordPress
+ * @package    WordPress
  * @subpackage mt
- * @since mt 1.0
+ * @since      mt 1.0
  */
 
-if ( has_post_thumbnail() && ! post_password_required() ) {
+if (has_post_thumbnail() && !post_password_required()) {
+    $featured_media_inner_classes = '';
+    
+    // Make the featured media thinner on archive pages.
+    if (!is_singular()) {
+        $featured_media_inner_classes .= ' medium';
+    }
+    ?>
 
-	$featured_media_inner_classes = '';
+  <figure class="featured-media">
 
-	// Make the featured media thinner on archive pages.
-	if ( ! is_singular() ) {
-		$featured_media_inner_classes .= ' medium';
-	}
-	?>
+    <div class="featured-media-inner section-inner<?php
+    echo $featured_media_inner_classes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static output ?>">
+        
+        <?php
+        the_post_thumbnail();
+        
+        $caption = get_the_post_thumbnail_caption();
+        
+        if ($caption) {
+            ?>
 
-	<figure class="featured-media">
+          <figcaption class="wp-caption-text"><?php
+              echo wp_kses_post($caption); ?></figcaption>
+            
+            <?php
+        }
+        ?>
 
-		<div class="featured-media-inner section-inner<?php echo $featured_media_inner_classes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static output ?>">
+    </div><!-- .featured-media-inner -->
 
-			<?php
-			the_post_thumbnail();
-
-			$caption = get_the_post_thumbnail_caption();
-
-			if ( $caption ) {
-				?>
-
-				<figcaption class="wp-caption-text"><?php echo wp_kses_post( $caption ); ?></figcaption>
-
-				<?php
-			}
-			?>
-
-		</div><!-- .featured-media-inner -->
-
-	</figure><!-- .featured-media -->
-
-	<?php
+  </figure><!-- .featured-media -->
+    
+    <?php
 }
