@@ -82,13 +82,6 @@ function mt_theme_support()
     
     // Add theme support for selective refresh for widgets.
     add_theme_support('customize-selective-refresh-widgets');
-    
-    /*
-       * Adds `async` and `defer` support for scripts registered or enqueued
-       * by the theme.
-       */
-    $loader = new Mt_Script_Loader();
-    add_filter('script_loader_tag', array($loader, 'filter_script_loader_tag'), 10, 2);
 }
 
 add_action('after_setup_theme', 'mt_theme_support');
@@ -121,9 +114,6 @@ require get_template_directory() . '/classes/class-mt-walker-comment.php';
 
 // Custom page walker.
 require get_template_directory() . '/classes/class-mt-walker-page.php';
-
-// Custom script loader class.
-require get_template_directory() . '/classes/class-mt-script-loader.php';
 
 // Non-latin language handling.
 require get_template_directory() . '/classes/class-mt-non-latin-languages.php';
