@@ -42,18 +42,10 @@ function mt_theme_support()
         $content_width = 580;
     }
     
-    /*
-       * Enable support for Post Thumbnails on posts and pages.
-       *
-       * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-       */
+    // Enable support for Post Thumbnails on every post types.
     add_theme_support('post-thumbnails');
-    
-    // Set post thumbnail size.
-    set_post_thumbnail_size(1200, 9999);
-    
-    // Add custom image size used in Cover Template.
-    add_image_size('mt-fullscreen', 1980, 9999);
+    set_post_thumbnail_size(1200, 9999);          // Set post thumbnail size.
+    add_image_size('mt-fullscreen', 1980, 9999);  // Add custom image size used in Cover Template.
     
     // Custom logo.
     $logo_width = 120;
