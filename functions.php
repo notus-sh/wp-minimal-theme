@@ -164,17 +164,16 @@ function mt_register_scripts()
 
 add_action('wp_enqueue_scripts', 'mt_register_scripts');
 
+
 /**
  * Register navigation menus uses wp_nav_menu in five places.
  */
 function mt_menus()
 {
-    $locations = array(
-      'primary' => __('Main Menu', 'mt'),
-      'footer' => __('Footer Menu', 'mt'),
-    );
-    
-    register_nav_menus($locations);
+    register_nav_menus([
+        'primary' => __('Main Menu', 'mt'),
+        'footer' => __('Footer Menu', 'mt'),
+    ]);
 }
 
 add_action('init', 'mt_menus');
