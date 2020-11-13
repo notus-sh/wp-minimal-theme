@@ -1,14 +1,9 @@
 <?php
+
 /**
- * Displays the menus and widgets at the end of the main element.
- * Visually, this output is presented as part of the footer element.
- *
- * @package    WordPress
- * @subpackage mt
- * @since      mt 1.0
+ * Displays footer menu
  */
 
-// Only output the container if there are elements to display.
 if (!has_nav_menu('footer')) {
     return;
 }

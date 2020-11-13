@@ -1,13 +1,7 @@
 <?php
 
 /**
- * Header file for the mt WordPress default theme.
- *
- * @link       https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package    WordPress
- * @subpackage mt
- * @since      mt 1.0
+ * Template to display the header
  */
 
 use MT\Walkers\Pages;
@@ -30,14 +24,16 @@ use MT\Walkers\Pages;
         <div class="header-inner section-inner">
             <div class="header-titles-wrapper">
               
-                <button class="toggle search-toggle mobile-search-toggle" data-toggle-target=".search-modal"
-                        data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field"
+                <button class="toggle search-toggle mobile-search-toggle"
+                        data-toggle-target=".search-modal"
+                        data-toggle-body-class="showing-search-modal"
+                        data-set-focus=".search-modal .search-field"
                         aria-expanded="false">
                     <span class="toggle-inner">
                         <span class="toggle-icon">🔎</span>
                         <span class="toggle-text"><?php _e('Search', 'mt'); ?></span>
                     </span>
-                </button><!-- .search-toggle -->
+                </button>
     
                 <div class="header-titles">
                     <?php if ((is_front_page() || is_home()) && !is_page()): ?>
@@ -57,8 +53,8 @@ use MT\Walkers\Pages;
                     <?php if ($description = get_bloginfo('description')): ?>
                         <div class="site-description"><?php echo $description; ?></div>
                     <?php endif; ?>
-                </div><!-- .header-titles -->
-            </div><!-- .header-titles-wrapper -->
+                </div>
+            </div>
     
             <div class="header-navigation-wrapper">
                 <nav class="primary-menu-wrapper" aria-label="<?php esc_attr_e('Main menu', 'mt'); ?>" role="navigation">
@@ -78,7 +74,7 @@ use MT\Walkers\Pages;
                             ]); ?>
                         <?php endif; ?>
                     </ul>
-                </nav><!-- .primary-menu-wrapper -->
+                </nav>
     
                 <div class="header-toggles hide-no-js">
                     <div class="toggle-wrapper search-toggle-wrapper">
@@ -92,10 +88,10 @@ use MT\Walkers\Pages;
                             </span>
                         </button>
                     </div>
-                </div><!-- .header-toggles -->
-            </div><!-- .header-navigation-wrapper -->
-        </div><!-- .header-inner -->
+                </div>
+            </div>
+        </div>
         
         <?php get_template_part('template-parts/modal-search'); ?>
     
-    </header><!-- #site-header -->
+    </header>

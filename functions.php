@@ -1,31 +1,7 @@
 <?php
-/**
- * mt functions and definitions
- *
- * @link       https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package    WordPress
- * @subpackage mt
- * @since      mt 1.0
- */
 
 use Composer\Autoload\ClassLoader;
 
-/**
- * Table of Contents:
- * Autoloading
- * Theme Support
- * Required Files
- * Register Styles
- * Register Scripts
- * Register Menus
- * Custom Logo
- * WP Body Open
- * Register Sidebars
- * Enqueue Block Editor Assets
- * Enqueue Classic Editor Styles
- * Block Editor Settings
- */
 
 $autoload_ns = 'MT\\';
 $autoload_dir = __DIR__ . '/src/';
@@ -56,6 +32,7 @@ try {
     
 }
 
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -76,7 +53,7 @@ function mt_theme_support()
     
     // Enable support for Post Thumbnails on every post types.
     add_theme_support('post-thumbnails');
-    set_post_thumbnail_size(1200, 9999);          // Set post thumbnail size.
+    set_post_thumbnail_size(1200, 9999); // Set post thumbnail size.
     
     // Let WordPress manage the document title.
     add_theme_support('title-tag');
@@ -124,6 +101,7 @@ function mt_load_textdomain() {
 
 add_action('after_setup_theme', 'mt_load_textdomain');
 
+
 /**
  * REQUIRED FILES
  * Include required files.
@@ -146,6 +124,7 @@ function mt_register_styles()
 
 add_action('wp_enqueue_scripts', 'mt_register_styles');
 
+
 /**
  * Register and Enqueue Scripts.
  */
@@ -165,7 +144,7 @@ add_action('wp_enqueue_scripts', 'mt_register_scripts');
 
 
 /**
- * Register navigation menus uses wp_nav_menu in five places.
+ * Register navigation menus
  */
 function mt_menus()
 {
@@ -177,6 +156,7 @@ function mt_menus()
 
 add_action('init', 'mt_menus');
 
+
 /**
  * Include a skip to content link at the top of the page so that users can bypass the menu.
  */
@@ -186,6 +166,7 @@ function mt_skip_link()
 }
 
 add_action('wp_body_open', 'mt_skip_link', 5);
+
 
 /**
  * Enqueue supplemental block editor styles.
@@ -214,6 +195,7 @@ function mt_block_editor_styles()
 
 add_action('enqueue_block_editor_assets', 'mt_block_editor_styles', 1, 1);
 
+
 /**
  * Enqueue classic editor styles.
  */
@@ -227,6 +209,7 @@ function mt_classic_editor_styles()
 }
 
 add_action('init', 'mt_classic_editor_styles');
+
 
 /**
  * Overwrite default more tag with styling and screen reader markup.
@@ -247,3 +230,107 @@ function mt_read_more_tag($html)
 }
 
 add_filter('the_content_more_link', 'mt_read_more_tag');
+
+
+/**
+ * Force comments number to be returned as int
+ */
+function mt_get_comments_number($count)
+{
+    return absint($count);
+}
+
+add_filter('get_comments_number', 'mt_get_comments_number');
+
+
+/**
+ * Return the comment section title
+ */
+function mt_get_comments_title()
+{
+    $nb_comments = get_comments_number();
+    if (0 === $nb_comments) {
+        return _e('Leave a comment', 'mt');
+    }
+    
+    if (1 === $nb_comments) {
+        return sprintf(_x('One reply on &ldquo;%s&rdquo;', 'comments title', 'mt'), get_the_title());
+    }
+    
+    return sprintf(
+        /* translators: 1: Number of comments, 2: Post title. */
+        _nx('%1$s reply on &ldquo;%2$s&rdquo;', '%1$s replies on &ldquo;%2$s&rdquo;', $nb_comments, 'comments title', 'mt'),
+        number_format_i18n($nb_comments),
+        get_the_title()
+    );
+}
+
+/**
+ * Return comments pagination
+ */
+function mt_get_comments_pagination()
+{
+    return paginate_comments_links([
+        'echo' => false,
+        'end_size' => 0,
+        'mid_size' => 0,
+        'next_text' => __('Newer Comments', 'mt') . ' <span aria-hidden="true">&rarr;</span>',
+        'prev_text' => '<span aria-hidden="true">&larr;</span> ' . __('Older Comments', 'mt'),
+    ]);
+}
+
+/**
+ * Return copyright mention for footer
+ */
+function mt_get_copyright()
+{
+    return sprintf(
+        '&copy; %1$s <a href="%2$s">%3$s</a>',
+        date_i18n(
+            /* translators: Copyright date format, see https://www.php.net/date */
+            _x('Y', 'copyright date format', 'mt')
+        ),
+        esc_url(home_url('/')),
+        get_bloginfo('name', 'display')
+    );
+}
+
+
+/**
+ * Return title for search result page
+ */
+function mt_get_search_title()
+{
+    return sprintf(
+        '%1$s %2$s',
+        '<span class="color-accent">' . __('Search:', 'mt') . '</span>',
+        '&ldquo;' . get_search_query() . '&rdquo;'
+    );
+}
+
+
+/**
+ * Return description for search result page
+ */
+function mt_get_search_description()
+{
+    global $wp_query;
+    
+    if (!$wp_query->found_posts) {
+        return __(
+          'We could not find any results for your search. You can give it another try through the search form below.',
+          'mt'
+        );
+    }
+    
+    return sprintf(
+        /* translators: %s: Number of search results. */
+        _n(
+            'We found %s result for your search.',
+            'We found %s results for your search.',
+            $wp_query->found_posts,
+            'mt'
+        ),
+        number_format_i18n($wp_query->found_posts)
+    );
+}

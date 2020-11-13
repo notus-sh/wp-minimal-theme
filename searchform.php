@@ -16,25 +16,19 @@
  * if one was passed to get_search_form() in the args array.
  */
 $mt_unique_id = wp_unique_id('search-form-');
-
-$mt_aria_label = !empty($args['label']) ? 'aria-label="' . esc_attr($args['label']) . '"' : '';
 ?>
-<form role="search" <?php
-echo $mt_aria_label; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped above. ?> method="get"
-      class="search-form" action="<?php
-echo esc_url(home_url('/')); ?>">
-  <label for="<?php
-  echo esc_attr($mt_unique_id); ?>">
-    <span class="screen-reader-text"><?php
-        _e(
-          'Search for:',
-          'mt'
-        ); // phpcs:ignore: WordPress.Security.EscapeOutput.UnsafePrintingFunction -- core trusts translations ?></span>
-    <input type="search" id="<?php
-    echo esc_attr($mt_unique_id); ?>" class="search-field" placeholder="<?php
-    echo esc_attr_x('Search &hellip;', 'placeholder', 'mt'); ?>" value="<?php
-    echo get_search_query(); ?>" name="s"/>
-  </label>
-  <input type="submit" class="search-submit" value="<?php
-  echo esc_attr_x('Search', 'submit button', 'mt'); ?>"/>
+<form class="search-form" role="search" method="get"
+      action="<?php echo esc_url(home_url('/')); ?>"
+      <?php echo !empty($args['label']) ? 'aria-label="' . esc_attr($args['label']) . '"' : ''; ?>>
+  
+    <label for="<?php echo esc_attr($mt_unique_id); ?>">
+        <span class="screen-reader-text"><?php _e('Search for:', 'mt'); ?></span>
+        <input type="search" name="s" class="search-field"
+               id="<?php echo esc_attr($mt_unique_id); ?>"
+               placeholder="<?php echo esc_attr_x('Search &hellip;', 'placeholder', 'mt'); ?>"
+               value="<?php echo get_search_query(); ?>" />
+    </label>
+    
+    <input type="submit" class="search-submit"
+           value="<?php echo esc_attr_x('Search', 'submit button', 'mt'); ?>" />
 </form>

@@ -1,42 +1,24 @@
 <?php
+
 /**
- * The template for displaying the 404 template in the mt theme.
- *
- * @package    WordPress
- * @subpackage mt
- * @since      mt 1.0
+ * Template to display 404 pages
  */
 
-get_header();
 ?>
 
-  <main id="site-content" role="main">
+<?php get_header(); ?>
 
+<main id="site-content" role="main">
     <div class="section-inner thin error404-content">
-
-      <h1 class="entry-title"><?php
-          _e('Page Not Found', 'mt'); ?></h1>
-
-      <div class="intro-text"><p><?php
-              _e(
-                'The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place.',
-                'mt'
-              ); ?></p></div>
+        <h1 class="entry-title"><?php _e('Page Not Found', 'mt'); ?></h1>
+        <div class="intro-text">
+          <p><?php _e('The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place.', 'mt'); ?></p>
+        </div>
         
-        <?php
-        get_search_form(
-          array(
-            'label' => __('404 not found', 'mt'),
-          )
-        );
-        ?>
-
+        <?php get_search_form(['label' => __('404 not found', 'mt')]); ?>
     </div><!-- .section-inner -->
+</main><!-- #site-content -->
 
-  </main><!-- #site-content -->
+<?php get_template_part('template-parts/footer-menus-widgets'); ?>
 
-<?php
-get_template_part('template-parts/footer-menus-widgets'); ?>
-
-<?php
-get_footer();
+<?php get_footer();
