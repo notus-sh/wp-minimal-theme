@@ -483,11 +483,6 @@ function mt_body_classes($classes)
         $classes[] = 'singular';
     }
     
-    // Check for enabled search.
-    if (true === get_theme_mod('enable_header_search', true)) {
-        $classes[] = 'enable-search-modal';
-    }
-    
     // Check for post thumbnail.
     if (is_singular() && has_post_thumbnail()) {
         $classes[] = 'has-post-thumbnail';
