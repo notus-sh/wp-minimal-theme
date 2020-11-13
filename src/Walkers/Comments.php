@@ -132,7 +132,7 @@ class Comments extends Walker_Comment
             )
           );
           
-          $by_post_author = mt_is_comment_by_post_author($comment);
+          $by_post_author = $this->is_comment_by_post_author($comment);
           
           if ($comment_reply_link || $by_post_author) {
               ?>
@@ -157,5 +157,18 @@ class Comments extends Walker_Comment
       </article><!-- .comment-body -->
         
         <?php
+    }
+    
+    protected function is_comment_by_post_author($comment = null)
+    {
+        if (is_object($comment) && $comment->user_id > 0) {
+            $user = get_userdata($comment->user_id);
+            $post = get_post($comment->comment_post_ID);
+        
+            if (!empty($user) && !empty($post)) {
+                return $comment->user_id === $post->post_author;
+            }
+        }
+        return false;
     }
 }
