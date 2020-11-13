@@ -532,12 +532,8 @@ function mt_body_classes($classes)
         $classes[] = basename(get_page_template_slug(), '.php');
     }
     
-    // Check for the elements output in the top part of the footer.
-    $has_footer_menu = has_nav_menu('footer');
-    $has_sidebar_1 = is_active_sidebar('sidebar-1');
-    
-    // Add a class indicating whether those elements are output.
-    if ($has_footer_menu || $has_sidebar_1) {
+    // Add a class indicating whether top part of the footer elements are output.
+    if (has_nav_menu('footer')) {
         $classes[] = 'footer-top-visible';
     } else {
         $classes[] = 'footer-top-hidden';
