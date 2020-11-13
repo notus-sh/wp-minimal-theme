@@ -483,11 +483,6 @@ function mt_body_classes($classes)
         $classes[] = 'singular';
     }
     
-    // Check whether the current page should have an overlay header.
-    if (is_page_template(array('templates/template-cover.php'))) {
-        $classes[] = 'overlay-header';
-    }
-    
     // Check whether the current page has full-width content.
     if (is_page_template(array('templates/template-full-width.php'))) {
         $classes[] = 'has-full-width-content';

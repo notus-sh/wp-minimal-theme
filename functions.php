@@ -77,7 +77,6 @@ function mt_theme_support()
     // Enable support for Post Thumbnails on every post types.
     add_theme_support('post-thumbnails');
     set_post_thumbnail_size(1200, 9999);          // Set post thumbnail size.
-    add_image_size('mt-fullscreen', 1980, 9999);  // Add custom image size used in Cover Template.
     
     // Let WordPress manage the document title.
     add_theme_support('title-tag');
