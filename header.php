@@ -58,72 +58,40 @@ use MT\Walkers\Pages;
                         <div class="site-description"><?php echo $description; ?></div>
                     <?php endif; ?>
                 </div><!-- .header-titles -->
-    
-                <button class="toggle nav-toggle mobile-nav-toggle" data-toggle-target=".menu-modal"
-                      data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
-                    <span class="toggle-inner">
-                        <span class="toggle-icon">…</span>
-                        <span class="toggle-text"><?php _e('Menu', 'mt'); ?></span>
-                    </span>
-                </button><!-- .nav-toggle -->
-            
             </div><!-- .header-titles-wrapper -->
     
             <div class="header-navigation-wrapper">
-            
-                <?php if (has_nav_menu('primary') || !has_nav_menu('expanded')): ?>
-                <nav class="primary-menu-wrapper" aria-label="<?php esc_attr_e('Horizontal', 'mt'); ?>" role="navigation">
+                <nav class="primary-menu-wrapper" aria-label="<?php esc_attr_e('Main menu', 'mt'); ?>" role="navigation">
                     <ul class="primary-menu reset-list-style">
-                        <?php
-                        if (has_nav_menu('primary')) {
-                            wp_nav_menu(
-                              array(
+                        <?php if (has_nav_menu('primary')): ?>
+                            <?php wp_nav_menu([
                                 'container' => '',
                                 'items_wrap' => '%3$s',
                                 'theme_location' => 'primary',
-                              )
-                            );
-                        } elseif (!has_nav_menu('expanded')) {
-                            wp_list_pages(
-                              array(
+                            ]); ?>
+                        <?php else: ?>
+                            <?php wp_list_pages([
                                 'match_menu_classes' => true,
                                 'show_sub_menu_icons' => true,
                                 'title_li' => false,
                                 'walker' => new Pages(),
-                              )
-                            );
-                        }
-                        ?>
+                            ]); ?>
+                        <?php endif; ?>
                     </ul>
                 </nav><!-- .primary-menu-wrapper -->
-                <?php endif; ?>
     
                 <div class="header-toggles hide-no-js">
-                  
-                    <?php if (has_nav_menu('expanded')): ?>
-                    <div class="toggle-wrapper nav-toggle-wrapper has-expanded-menu">
-                        <button class="toggle nav-toggle desktop-nav-toggle" data-toggle-target=".menu-modal"
-                                data-toggle-body-class="showing-menu-modal" aria-expanded="false"
-                                data-set-focus=".close-nav-toggle">
-                            <span class="toggle-inner">
-                                <span class="toggle-text"><?php _e('Menu', 'mt'); ?></span>
-                                <span class="toggle-icon">…</span>
-                            </span>
-                        </button><!-- .nav-toggle -->
-                    </div><!-- .nav-toggle-wrapper -->
-                    <?php endif; ?>
-    
                     <div class="toggle-wrapper search-toggle-wrapper">
-                        <button class="toggle search-toggle desktop-search-toggle" data-toggle-target=".search-modal"
-                              data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field"
-                              aria-expanded="false">
+                        <button class="toggle search-toggle desktop-search-toggle"
+                                data-toggle-target=".search-modal"
+                                data-toggle-body-class="showing-search-modal"
+                                data-set-focus=".search-modal .search-field"
+                                aria-expanded="false">
                             <span class="toggle-inner">
-                              🔎
-                              <span class="toggle-text"><?php _e('Search', 'mt'); ?></span>
+                                🔎 <span class="toggle-text"><?php _e('Search', 'mt'); ?></span>
                             </span>
-                        </button><!-- .search-toggle -->
+                        </button>
                     </div>
-              
                 </div><!-- .header-toggles -->
             </div><!-- .header-navigation-wrapper -->
         </div><!-- .header-inner -->
@@ -131,7 +99,3 @@ use MT\Walkers\Pages;
         <?php get_template_part('template-parts/modal-search'); ?>
     
     </header><!-- #site-header -->
-    
-    <?php
-    // Output the menu modal.
-    get_template_part('template-parts/modal-menu');
