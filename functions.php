@@ -172,7 +172,6 @@ function mt_menus()
     $locations = array(
       'primary' => __('Main Menu', 'mt'),
       'expanded' => __('Desktop Expanded Menu', 'mt'),
-      'mobile' => __('Mobile Menu', 'mt'),
       'footer' => __('Footer Menu', 'mt'),
     );
     
