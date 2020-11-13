@@ -170,11 +170,10 @@ add_action('wp_enqueue_scripts', 'mt_register_scripts');
 function mt_menus()
 {
     $locations = array(
-      'primary' => __('Desktop Horizontal Menu', 'mt'),
+      'primary' => __('Main Menu', 'mt'),
       'expanded' => __('Desktop Expanded Menu', 'mt'),
       'mobile' => __('Mobile Menu', 'mt'),
       'footer' => __('Footer Menu', 'mt'),
-      'social' => __('Social Menu', 'mt'),
     );
     
     register_nav_menus($locations);
