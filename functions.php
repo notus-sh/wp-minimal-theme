@@ -214,18 +214,6 @@ function mt_sidebar_registration()
         )
       )
     );
-    
-    // Footer #2.
-    register_sidebar(
-      array_merge(
-        $shared_args,
-        array(
-          'name' => __('Footer #2', 'mt'),
-          'id' => 'sidebar-2',
-          'description' => __('Widgets in this area will be displayed in the second column in the footer.', 'mt'),
-        )
-      )
-    );
 }
 
 add_action('widgets_init', 'mt_sidebar_registration');
