@@ -483,11 +483,6 @@ function mt_body_classes($classes)
         $classes[] = 'singular';
     }
     
-    // Check whether the current page has full-width content.
-    if (is_page_template(array('templates/template-full-width.php'))) {
-        $classes[] = 'has-full-width-content';
-    }
-    
     // Check for enabled search.
     if (true === get_theme_mod('enable_header_search', true)) {
         $classes[] = 'enable-search-modal';
