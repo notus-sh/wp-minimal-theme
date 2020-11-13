@@ -9,8 +9,11 @@
  * @since      mt 1.0
  */
 
+use Composer\Autoload\ClassLoader;
+
 /**
  * Table of Contents:
+ * Autoloading
  * Theme Support
  * Required Files
  * Register Styles
@@ -23,6 +26,35 @@
  * Enqueue Classic Editor Styles
  * Block Editor Settings
  */
+
+$autoload_ns = 'MT\\';
+$autoload_dir = __DIR__ . '/src/';
+
+try {
+    $loader = new ClassLoader();
+    $loader->addPsr4($autoload_ns , $autoload_dir);
+    $loader->register();
+    
+} catch (Exception $e) {
+    
+    // Composer is not available, fallback to a custom SPL autoloader.
+    spl_autoload_register(function ($class) use ($autoload_ns, $autoload_dir) {
+        $ns_length = strlen($autoload_ns);
+        if (strncmp($autoload_ns, $class, $ns_length) !== 0) {
+            return;
+        }
+        
+        $class_in_ns = substr($class, $ns_length);
+        $file_in_dir = $autoload_dir . str_replace('\\', '/', $class_in_ns) . '.php';
+        
+        if (false === $realpath = realpath($file_in_dir)) {
+            return;
+        }
+    
+        require $realpath;
+    });
+    
+}
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -84,6 +116,9 @@ function mt_theme_support()
 add_action('after_setup_theme', 'mt_theme_support');
 
 
+/**
+ * Load theme translation files.
+ */
 function mt_load_textdomain() {
     load_theme_textdomain('mt', get_template_directory() . '/locales/');
 }
@@ -95,15 +130,6 @@ add_action('after_setup_theme', 'mt_load_textdomain');
  * Include required files.
  */
 require get_template_directory() . '/inc/template-tags.php';
-
-// Require Separator Control class.
-require get_template_directory() . '/classes/class-mt-separator-control.php';
-
-// Custom comment walker.
-require get_template_directory() . '/classes/class-mt-walker-comment.php';
-
-// Custom page walker.
-require get_template_directory() . '/classes/class-mt-walker-page.php';
 
 /**
  * Register and Enqueue Styles.

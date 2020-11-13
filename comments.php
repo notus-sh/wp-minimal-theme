@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template file for displaying the comments and comment form for the
  * mt theme.
@@ -7,6 +8,8 @@
  * @subpackage mt
  * @since      mt 1.0
  */
+
+use MT\Walkers\Comments;
 
 /*
  * If the current post is protected by a password and
@@ -60,7 +63,7 @@ if ($comments) {
         <?php
         wp_list_comments(
           array(
-            'walker' => new Mt_Walker_Comment(),
+            'walker' => new Comments(),
             'avatar_size' => 120,
             'style' => 'div',
           )

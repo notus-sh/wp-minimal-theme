@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Displays the menu icon and modal
  *
@@ -7,6 +8,7 @@
  * @since      mt 1.0
  */
 
+use MT\Walkers\Pages;
 ?>
 
 <div class="menu-modal cover-modal header-footer-group" data-modal-target-string=".menu-modal">
@@ -93,7 +95,7 @@
                           'match_menu_classes' => true,
                           'show_toggles' => true,
                           'title_li' => false,
-                          'walker' => new Mt_Walker_Page(),
+                          'walker' => new Pages(),
                         )
                       );
                   }

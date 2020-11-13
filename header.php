@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Header file for the mt WordPress default theme.
  *
@@ -8,6 +9,8 @@
  * @subpackage mt
  * @since      mt 1.0
  */
+
+use MT\Walkers\Pages;
 
 ?><!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
@@ -86,7 +89,7 @@
                                 'match_menu_classes' => true,
                                 'show_sub_menu_icons' => true,
                                 'title_li' => false,
-                                'walker' => new Mt_Walker_Page(),
+                                'walker' => new Pages(),
                               )
                             );
                         }
