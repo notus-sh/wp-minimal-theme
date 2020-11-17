@@ -10,6 +10,11 @@ abstract class Theme
         add_action('after_setup_theme', [self::class, 'loadTextDomain']);
     }
     
+    public static function getVersion(): string
+    {
+        return wp_get_theme()->get('Version');
+    }
+    
     /**
      * Sets up theme defaults and registers support for various WordPress features.
      *

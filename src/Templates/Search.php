@@ -2,7 +2,7 @@
 
 namespace MT\Templates;
 
-class Search
+abstract class Search
 {
     public static function setup()
     {

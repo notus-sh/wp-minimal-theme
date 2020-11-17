@@ -2,6 +2,8 @@
 
 use Composer\Autoload\ClassLoader;
 use MT\Templates\Comments;
+use MT\Templates\Search;
+use MT\Templates\Layout;
 use MT\Theme;
 
 $autoload_ns = 'MT\\';
@@ -34,42 +36,10 @@ try {
 }
 
 Theme::setup();
+Layout::setup();
+
+Search::setup();
 Comments::setup();
-
-/**
- * Register and Enqueue Styles.
- */
-function mt_register_styles()
-{
-    $theme_version = wp_get_theme()->get('Version');
-    
-    wp_enqueue_style('mt-style', get_stylesheet_uri(), array(), $theme_version);
-    wp_style_add_data('mt-style', 'rtl', 'replace');
-    
-    // Add print CSS.
-    wp_enqueue_style('mt-print-style', get_template_directory_uri() . '/print.css', null, $theme_version, 'print');
-}
-
-add_action('wp_enqueue_scripts', 'mt_register_styles');
-
-
-/**
- * Register and Enqueue Scripts.
- */
-function mt_register_scripts()
-{
-    $theme_version = wp_get_theme()->get('Version');
-    
-    if ((!is_admin()) && is_singular() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
-    }
-    
-    wp_enqueue_script('mt-js', get_template_directory_uri() . '/assets/js/index.js', array(), $theme_version, false);
-    wp_script_add_data('mt-js', 'async', true);
-}
-
-add_action('wp_enqueue_scripts', 'mt_register_scripts');
-
 
 /**
  * Register navigation menus
@@ -83,17 +53,6 @@ function mt_menus()
 }
 
 add_action('init', 'mt_menus');
-
-
-/**
- * Include a skip to content link at the top of the page so that users can bypass the menu.
- */
-function mt_skip_link()
-{
-    echo '<a class="skip-link screen-reader-text" href="#site-content">' . __('Skip to the content', 'mt') . '</a>';
-}
-
-add_action('wp_body_open', 'mt_skip_link', 5);
 
 
 /**
@@ -159,21 +118,7 @@ function mt_read_more_tag($html)
 
 add_filter('the_content_more_link', 'mt_read_more_tag');
 
-/**
- * Return copyright mention for footer
- */
-function mt_get_copyright()
-{
-    return sprintf(
-        '&copy; %1$s <a href="%2$s">%3$s</a>',
-        date_i18n(
-            /* translators: Copyright date format, see https://www.php.net/date */
-            _x('Y', 'copyright date format', 'mt')
-        ),
-        esc_url(home_url('/')),
-        get_bloginfo('name', 'display')
-    );
-}
+
 
 /**
  * Table of Contents:
@@ -576,85 +521,6 @@ function mt_add_sub_toggles_to_main_menu($args, $item, $depth)
 
 add_filter('nav_menu_item_args', 'mt_add_sub_toggles_to_main_menu', 10, 3);
 
-/**
- * Classes
- */
-
-/**
- * Adds 'no-js' class.
- *
- * If we're missing JavaScript support, the HTML element will have a 'no-js' class.
- */
-function mt_no_js_class()
-{
-    ?>
-    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
-    <?php
-}
-
-add_action('wp_head', 'mt_no_js_class');
-
-/**
- * Adds conditional body classes.
- *
- * @param array $classes Classes added to the body tag.
- * @return array Classes added to the body tag.
- */
-function mt_body_classes($classes)
-{
-    global $post;
-    $post_type = isset($post) ? $post->post_type : false;
-    
-    // Check whether we're singular.
-    if (is_singular()) {
-        $classes[] = 'singular';
-    }
-    
-    // Check for post thumbnail.
-    if (is_singular() && has_post_thumbnail()) {
-        $classes[] = 'has-post-thumbnail';
-    } elseif (is_singular()) {
-        $classes[] = 'missing-post-thumbnail';
-    }
-    
-    // Check whether we're in the customizer preview.
-    if (is_customize_preview()) {
-        $classes[] = 'customizer-preview';
-    }
-    
-    // Check if posts have single pagination.
-    if (is_single() && (get_next_post() || get_previous_post())) {
-        $classes[] = 'has-single-pagination';
-    } else {
-        $classes[] = 'has-no-pagination';
-    }
-    
-    // Check if we're showing comments.
-    if ($post && (('post' === $post_type || comments_open() || get_comments_number()) && !post_password_required())) {
-        $classes[] = 'showing-comments';
-    } else {
-        $classes[] = 'not-showing-comments';
-    }
-    
-    // Check if avatars are visible.
-    $classes[] = get_option('show_avatars') ? 'show-avatars' : 'hide-avatars';
-    
-    // Slim page template class names (class = name - file suffix).
-    if (is_page_template()) {
-        $classes[] = basename(get_page_template_slug(), '.php');
-    }
-    
-    // Add a class indicating whether top part of the footer elements are output.
-    if (has_nav_menu('footer')) {
-        $classes[] = 'footer-top-visible';
-    } else {
-        $classes[] = 'footer-top-hidden';
-    }
-    
-    return $classes;
-}
-
-add_filter('body_class', 'mt_body_classes');
 
 /**
  * Archives
