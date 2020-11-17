@@ -4,7 +4,7 @@ namespace MT\Templates;
 
 abstract class Comments
 {
-    public static function init()
+    public static function setup()
     {
         add_filter('get_comments_number', [self::class, 'count']);
     }
@@ -40,13 +40,9 @@ abstract class Comments
     }
     
     /**
-     * Filters
-     */
-    
-    /**
      * @hook get_comments_number
      */
-    public static function number($count)
+    public static function count($count)
     {
         return absint($count);
     }
