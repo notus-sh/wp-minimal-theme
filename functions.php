@@ -1,6 +1,7 @@
 <?php
 
 use Composer\Autoload\ClassLoader;
+use MT\Templates\Comments;
 
 
 $autoload_ns = 'MT\\';
@@ -32,6 +33,7 @@ try {
     
 }
 
+Comments::init();
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -224,54 +226,6 @@ function mt_read_more_tag($html)
 
 add_filter('the_content_more_link', 'mt_read_more_tag');
 
-
-/**
- * Force comments number to be returned as int
- */
-function mt_get_comments_number($count)
-{
-    return absint($count);
-}
-
-add_filter('get_comments_number', 'mt_get_comments_number');
-
-
-/**
- * Return the comment section title
- */
-function mt_get_comments_title()
-{
-    $nb_comments = get_comments_number();
-    if (0 === $nb_comments) {
-        return _e('Leave a comment', 'mt');
-    }
-    
-    if (1 === $nb_comments) {
-        return sprintf(_x('One reply on &ldquo;%s&rdquo;', 'comments title', 'mt'), get_the_title());
-    }
-    
-    return sprintf(
-        /* translators: 1: Number of comments, 2: Post title. */
-        _nx('%1$s reply on &ldquo;%2$s&rdquo;', '%1$s replies on &ldquo;%2$s&rdquo;', $nb_comments, 'comments title', 'mt'),
-        number_format_i18n($nb_comments),
-        get_the_title()
-    );
-}
-
-/**
- * Return comments pagination
- */
-function mt_get_comments_pagination()
-{
-    return paginate_comments_links([
-        'echo' => false,
-        'end_size' => 0,
-        'mid_size' => 0,
-        'next_text' => __('Newer Comments', 'mt') . ' <span aria-hidden="true">&rarr;</span>',
-        'prev_text' => '<span aria-hidden="true">&larr;</span> ' . __('Older Comments', 'mt'),
-    ]);
-}
-
 /**
  * Return copyright mention for footer
  */
@@ -336,23 +290,6 @@ function mt_get_search_description()
  * Archives
  * Miscellaneous
  */
-
-/**
- * Filters comment reply link to not JS scroll.
- *
- * Filter the comment reply link to add a class indicating it should not use JS slow-scroll, as it
- * makes it scroll to the wrong position on the page.
- *
- * @param string $link Link to the top of the page.
- * @return string Link to the top of the page.
- */
-function mt_filter_comment_reply_link($link)
-{
-    $link = str_replace('class=\'', 'class=\'do-not-scroll ', $link);
-    return $link;
-}
-
-add_filter('comment_reply_link', 'mt_filter_comment_reply_link');
 
 /**
  * Post Meta

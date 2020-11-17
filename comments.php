@@ -4,7 +4,8 @@
  * Template to display comments and comment form
  */
 
-use MT\Walkers\Comments;
+use MT\Templates\Comments;
+use MT\Walkers\Comments as Walker;
 
 if (post_password_required()) {
     return;
@@ -15,18 +16,18 @@ if (post_password_required()) {
 <?php if ($comments): ?>
     <div class="comments" id="comments">
         <div class="comments-header section-inner small max-percentage">
-            <h2 class="comment-reply-title"><?php echo mt_get_comments_title(); ?></h2>
+            <h2 class="comment-reply-title"><?php echo Comments::title(); ?></h2>
         </div>
 
         <div class="comments-inner section-inner thin max-percentage">
         
             <?php wp_list_comments([
-                'walker' => new Comments(),
+                'walker' => new Walker(),
                 'avatar_size' => 120,
                 'style' => 'div',
             ]); ?>
           
-            <?php if ('' !== $pagination = mt_get_comments_pagination()): ?>
+            <?php if ('' !== $pagination = Comments::pagination()): ?>
             <nav class="comments-pagination pagination" aria-label="<?php esc_attr_e('Comments', 'mt'); ?>">
                 <?php echo wp_kses_post($pagination); ?>
             </nav>
@@ -48,6 +49,6 @@ if (post_password_required()) {
     
     <div class="comment-respond" id="respond">
         <p class="comments-closed"><?php _e('Comments are closed.', 'mt'); ?></p>
-    </div><!-- #respond -->
+    </div>
 
 <?php endif; ?>
