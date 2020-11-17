@@ -4,6 +4,8 @@
  * Template to display search results
  */
 
+use MT\Templates\Search;
+
 ?>
 
 <?php get_header(); ?>
@@ -12,11 +14,11 @@
     <header class="archive-header has-text-align-center header-footer-group">
         <div class="archive-header-inner section-inner medium">
             <h1 class="archive-title">
-                <?php echo wp_kses_post(mt_get_search_title()); ?>
+                <?php echo wp_kses_post(Search::title()); ?>
             </h1>
           
             <div class="archive-subtitle section-inner thin max-percentage intro-text">
-                <?php echo wp_kses_post(wpautop(mt_get_search_description())); ?>
+                <?php echo wp_kses_post(wpautop(Search::description())); ?>
             </div>
         </div>
     </header>
