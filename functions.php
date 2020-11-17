@@ -1,6 +1,7 @@
 <?php
 
 use Composer\Autoload\ClassLoader;
+use MT\Editors;
 use MT\Templates\Comments;
 use MT\Templates\Search;
 use MT\Templates\Layout;
@@ -36,6 +37,8 @@ try {
 }
 
 Theme::setup();
+Editors::setup();
+
 Layout::setup();
 
 Search::setup();
@@ -53,49 +56,6 @@ function mt_menus()
 }
 
 add_action('init', 'mt_menus');
-
-
-/**
- * Enqueue supplemental block editor styles.
- */
-function mt_block_editor_styles()
-{
-    // Enqueue the editor styles.
-    wp_enqueue_style(
-      'mt-block-editor-styles',
-      get_theme_file_uri('/assets/css/editor-style-block.css'),
-      array(),
-      wp_get_theme()->get('Version'),
-      'all'
-    );
-    wp_style_add_data('mt-block-editor-styles', 'rtl', 'replace');
-    
-    // Enqueue the editor script.
-    wp_enqueue_script(
-      'mt-block-editor-script',
-      get_theme_file_uri('/assets/js/editor-script-block.js'),
-      array('wp-blocks', 'wp-dom'),
-      wp_get_theme()->get('Version'),
-      true
-    );
-}
-
-add_action('enqueue_block_editor_assets', 'mt_block_editor_styles', 1, 1);
-
-
-/**
- * Enqueue classic editor styles.
- */
-function mt_classic_editor_styles()
-{
-    $classic_editor_styles = array(
-      '/assets/css/editor-style-classic.css',
-    );
-    
-    add_editor_style($classic_editor_styles);
-}
-
-add_action('init', 'mt_classic_editor_styles');
 
 
 /**
