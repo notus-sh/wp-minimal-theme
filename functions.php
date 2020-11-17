@@ -521,36 +521,6 @@ function mt_add_sub_toggles_to_main_menu($args, $item, $depth)
 
 add_filter('nav_menu_item_args', 'mt_add_sub_toggles_to_main_menu', 10, 3);
 
-
-/**
- * Archives
- */
-
-/**
- * Filters the archive title and styles the word before the first colon.
- *
- * @param string $title Current archive title.
- * @return string Current archive title.
- */
-function mt_get_the_archive_title($title)
-{
-    $regex = apply_filters(
-      'mt_get_the_archive_title_regex',
-      array(
-        'pattern' => '/(\A[^\:]+\:)/',
-        'replacement' => '<span class="color-accent">$1</span>',
-      )
-    );
-    
-    if (empty($regex)) {
-        return $title;
-    }
-    
-    return preg_replace($regex['pattern'], $regex['replacement'], $title);
-}
-
-add_filter('get_the_archive_title', 'mt_get_the_archive_title');
-
 /**
  * Miscellaneous
  */
