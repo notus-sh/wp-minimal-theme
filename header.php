@@ -4,8 +4,6 @@
  * Template to display the header
  */
 
-use MT\Walkers\Pages;
-
 ?><!DOCTYPE html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
@@ -66,12 +64,7 @@ use MT\Walkers\Pages;
                                 'theme_location' => 'primary',
                             ]); ?>
                         <?php else: ?>
-                            <?php wp_list_pages([
-                                'match_menu_classes' => true,
-                                'show_sub_menu_icons' => true,
-                                'title_li' => false,
-                                'walker' => new Pages(),
-                            ]); ?>
+                            <?php wp_list_pages(['title_li' => false]); ?>
                         <?php endif; ?>
                     </ul>
                 </nav>
