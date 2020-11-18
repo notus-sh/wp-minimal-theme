@@ -5,7 +5,6 @@
  */
 
 use MT\Templates\Comments;
-use MT\Walkers\Comments as Walker;
 
 if (post_password_required()) {
     return;
@@ -21,11 +20,7 @@ if (post_password_required()) {
 
         <div class="comments-inner section-inner thin max-percentage">
         
-            <?php wp_list_comments([
-                'walker' => new Walker(),
-                'avatar_size' => 120,
-                'style' => 'div',
-            ]); ?>
+            <?php wp_list_comments(['style' => 'div']); ?>
           
             <?php if ('' !== $pagination = Comments::pagination()): ?>
             <nav class="comments-pagination pagination" aria-label="<?php esc_attr_e('Comments', 'mt'); ?>">
