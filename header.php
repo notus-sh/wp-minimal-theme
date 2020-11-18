@@ -76,22 +76,7 @@ use MT\Walkers\Pages;
                     </ul>
                 </nav>
     
-                <div class="header-toggles hide-no-js">
-                    <div class="toggle-wrapper search-toggle-wrapper">
-                        <button class="toggle search-toggle desktop-search-toggle"
-                                data-toggle-target=".search-modal"
-                                data-toggle-body-class="showing-search-modal"
-                                data-set-focus=".search-modal .search-field"
-                                aria-expanded="false">
-                            <span class="toggle-inner">
-                                🔎 <span class="toggle-text"><?php _e('Search', 'mt'); ?></span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
+                <?php get_search_form(['label' => __('Search for:', 'mt')]); ?>
             </div>
         </div>
-        
-        <?php get_template_part('template-parts/modal-search'); ?>
-    
     </header>
