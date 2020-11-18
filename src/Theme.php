@@ -50,25 +50,6 @@ abstract class Theme
           'script',
           'style',
         ]);
-    
-        // Add support for full and wide align images.
-        add_theme_support('align-wide');
-        // Add support for responsive embeds.
-        add_theme_support('responsive-embeds');
-    
-        /**
-         * Configure Gutenberg
-         */
-        add_theme_support('editor-styles');
-    
-        // Colors
-        add_theme_support('disable-custom-colors'); // No color pickers
-        add_theme_support('disable-custom-gradients'); // No custom gradients
-        add_theme_support('editor-color-palette', []); // No colors at all
-    
-        // Fonts
-        add_theme_support('disable-custom-font-sizes'); // No custom font sizes
-        add_theme_support('editor-font-sizes', []); // No font size control at all
     }
     
     public static function loadTextDomain() {
