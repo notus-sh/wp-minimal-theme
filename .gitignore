@@ -1,0 +1,6 @@
+# NodeJS packages and Yarn lockfile
+/node_modules
+/yarn.lock
+
+# Built assets
+/dist/

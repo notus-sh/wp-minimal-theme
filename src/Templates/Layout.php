@@ -34,11 +34,8 @@ abstract class Layout
      */
     public static function registerStyles(): void
     {
-        wp_enqueue_style('mt-style', get_stylesheet_uri(), array(), Theme::getVersion());
-        wp_style_add_data('mt-style', 'rtl', 'replace');
-        
-        // Add print CSS.
-        wp_enqueue_style('mt-print-style', get_template_directory_uri() . '/print.css', null, Theme::getVersion(), 'print');
+        wp_enqueue_style('mt-style', self::assetsPath('stylesheets/main.css'), [], Theme::getVersion());
+        //wp_style_add_data('mt-style', 'rtl', 'replace');
     }
     
     /**
@@ -50,7 +47,7 @@ abstract class Layout
             wp_enqueue_script('comment-reply');
         }
         
-        wp_enqueue_script('mt-js', get_template_directory_uri() . '/assets/js/index.js', array(), Theme::getVersion(), false);
+        wp_enqueue_script('mt-js', self::assetsPath('javascripts/index.js'), [], Theme::getVersion(), false);
         wp_script_add_data('mt-js', 'async', true);
     }
     
@@ -150,5 +147,10 @@ abstract class Layout
             esc_url(home_url('/')),
             get_bloginfo('name', 'display')
         );
+    }
+    
+    public static function assetsPath($name)
+    {
+        return sprintf('%s/dist/%s', get_template_directory_uri(), $name);
     }
 }

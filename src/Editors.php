@@ -38,12 +38,12 @@ abstract class Editors
         // Enqueue the editor styles.
         wp_enqueue_style(
             'mt-block-editor-styles',
-            get_theme_file_uri('/assets/css/editor-style-block.css'),
+            get_theme_file_uri('/dist/stylesheets/blocks-editor.css'),
             array(),
             Theme::getVersion(),
             'all'
         );
-        wp_style_add_data('mt-block-editor-styles', 'rtl', 'replace');
+        //wp_style_add_data('mt-block-editor-styles', 'rtl', 'replace');
     }
     
     /**
@@ -51,6 +51,6 @@ abstract class Editors
      */
     public static function classic()
     {
-        add_editor_style(['/assets/css/editor-style-classic.css']);
+        add_editor_style(['/dist/stylesheets/classic-editor.css']);
     }
 }

@@ -1,58 +1,33 @@
 {
   "name": "mt",
-  "version": "1.5.0",
-  "description": "Default WP Theme",
-  "author": "The WordPress Contributors",
+  "description": "WP Minimal Theme",
+  "homepage": "?",
+  "keywords": ["WordPress", "Theme", "Minimal"],
+  
+  "version": "1.0.0",
   "license": "GPL-2.0-or-later",
-  "keywords": [
-    "WordPress",
-    "Theme",
-    "Mt"
-  ],
-  "homepage": "https://github.com/wordpress/mt#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wordpress/mt.git"
+  
+  "dependencies": {
+    "webpack-cli": "~4.2.0",
+    "webpack": "~5.6.0",
+    
+    "file-loader": "~6.2.0",
+    "css-loader": "~5.0.1",
+    "postcss-loader": "~4.0.4",
+    "image-webpack-loader": "~7.0.1",
+    
+    "clean-webpack-plugin": "~3.0.0",
+    "terser-webpack-plugin": "~5.0.0",
+    "mini-css-extract-plugin": "~1.3.1",
+    "ignore-emit-webpack-plugin": "~2.0.6",
+    
+    "postcss": "~8.1.7",
+    "autoprefixer": "~10.0.2",
+    "postcss-custom-media": "~7.0.8",
+    "cssnano": "~4.1.10"
   },
-  "bugs": {
-    "url": "https://github.com/wordpress/mt/issues"
-  },
-  "devDependencies": {
-    "@wordpress/browserslist-config": "^2.6.0",
-    "@wordpress/scripts": "^5.0.0",
-    "autoprefixer": "^9.6.1",
-    "concurrently": "^5.2.0",
-    "postcss-cli": "^7.0.0",
-    "rtlcss": "^2.5.0",
-    "stylelint-a11y": "^1.2.3"
-  },
-  "browserslist": [
-    "extends @wordpress/browserslist-config"
-  ],
-  "rtlcssConfig": {
-    "options": {
-      "autoRename": false,
-      "autoRenameStrict": false,
-      "clean": true,
-      "greedy": false,
-      "processUrls": false,
-      "stringMap": []
-    },
-    "plugins": [],
-    "map": false
-  },
+  
   "scripts": {
-    "build": "npm run build:vendor-prefixes && npm run build:rtl",
-    "build:rtl": "concurrently \"npm run build:rtl-style\" \"npm run build:rtl-esb\" \"npm run build:rtl-esc\"",
-    "build:rtl-style": "rtlcss style.css style-rtl.css",
-    "build:rtl-esb": "rtlcss assets/css/editor-style-block.css assets/css/editor-style-block-rtl.css",
-    "build:rtl-esc": "rtlcss assets/css/editor-style-classic.css assets/css/editor-style-classic-rtl.css",
-    "build:vendor-prefixes": "concurrently \"npm run build:vendor-prefixes-style\" \"npm run build:vendor-prefixes-esb\" \"npm run build:vendor-prefixes-esc\"",
-    "build:vendor-prefixes-style": "postcss -r --no-map style.css assets/css/editor-style-block.css assets/css/editor-style-classic.css",
-    "build:vendor-prefixes-esb": "postcss -r --no-map assets/css/editor-style-block.css ",
-    "build:vendor-prefixes-esc": "postcss -r --no-map assets/css/editor-style-classic.css",
-    "lint:css": "wp-scripts lint-style 'style.css' 'assets/**/*.css'",
-    "lint:js": "wp-scripts lint-js 'assets/**/*.js'",
-    "lint:pkg-json": "wp-scripts lint-pkg-json"
+    "build": "webpack --config dev/config/webpack.js"
   }
 }
