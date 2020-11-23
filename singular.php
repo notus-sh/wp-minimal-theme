@@ -15,14 +15,12 @@
         <?php
         while (have_posts()) {
             the_post();
-            get_template_part('template-parts/content', get_post_type());
+            get_template_part('partials/singular', get_post_type());
         }
         ?>
     
     <?php endif; ?>
 
 </main>
-
-<?php get_template_part('template-parts/footer-menus-widgets'); ?>
 
 <?php get_footer(); ?>

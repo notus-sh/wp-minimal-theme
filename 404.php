@@ -16,9 +16,7 @@
         </div>
         
         <?php get_search_form(['label' => __('404 not found', 'mt')]); ?>
-    </div><!-- .section-inner -->
-</main><!-- #site-content -->
-
-<?php get_template_part('template-parts/footer-menus-widgets'); ?>
+    </div>
+</main>
 
 <?php get_footer();

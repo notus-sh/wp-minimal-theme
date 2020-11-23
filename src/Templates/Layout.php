@@ -8,12 +8,25 @@ abstract class Layout
 {
     public static function setup()
     {
+        add_action('init', [self::class, 'registerMenus']);
+        
         add_action('wp_enqueue_scripts', [self::class, 'registerStyles']);
         add_action('wp_enqueue_scripts', [self::class, 'registerScripts']);
         
         add_action('wp_head', [self::class, 'noJSClass']);
         add_filter('body_class', [self::class, 'bodyClass']);
         add_action('wp_body_open', [self::class, 'skipLink'], 5);
+    }
+    
+    /**
+     * Register menus
+     */
+    public static function registerMenus()
+    {
+        register_nav_menus([
+            'primary' => __('Main Menu', 'mt'),
+            'footer' => __('Footer Menu', 'mt'),
+        ]);
     }
     
     /**
