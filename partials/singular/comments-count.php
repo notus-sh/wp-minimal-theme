@@ -10,4 +10,4 @@ if (!(comments_open() || get_comments_number())) {
 
 ?>
 
-<?php comments_popup_link(); ?>
+<p><?php comments_popup_link(); ?></p>

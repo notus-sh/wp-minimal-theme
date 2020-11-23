@@ -11,15 +11,10 @@ use MT\Templates\Search;
 <?php get_header(); ?>
 
 <main id="site-content" role="main">
-    <header class="archive-header has-text-align-center header-footer-group">
-        <div class="archive-header-inner section-inner medium">
-            <h1 class="archive-title">
-                <?php echo wp_kses_post(Search::title()); ?>
-            </h1>
-          
-            <div class="archive-subtitle section-inner thin max-percentage intro-text">
-                <?php echo wp_kses_post(wpautop(Search::description())); ?>
-            </div>
+    <header>
+        <h1 class="archive-title"><?php echo wp_kses_post(Search::title()); ?></h1>
+        <div class="archive-subtitle">
+            <?php echo wp_kses_post(wpautop(Search::description())); ?>
         </div>
     </header>
     
@@ -34,7 +29,7 @@ use MT\Templates\Search;
     
     <?php else: ?>
 
-        <div class="no-search-results-form section-inner thin">
+        <div class="no-search-results-form">
             <?php get_search_form(['label' => __('search again', 'mt')]); ?>
         </div>
         

@@ -13,11 +13,7 @@ abstract class Search
      */
     public static function title(): string
     {
-        return sprintf(
-            '%1$s %2$s',
-            '<span class="color-accent">' . __('Search:', 'mt') . '</span>',
-            '&ldquo;' . get_search_query() . '&rdquo;'
-        );
+        return sprintf('%1$s %2$s', __('Search:', 'mt'), '&ldquo;' . get_search_query() . '&rdquo;');
     }
     
     /**

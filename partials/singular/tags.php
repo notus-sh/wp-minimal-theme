@@ -10,7 +10,7 @@ if (!has_tag()) {
 
 ?>
 
-<div class="entry-tags">
+<p>
     <span class="screen-reader-text"><?php _e('Tags', 'mt'); ?></span>
-    <div class="entry-tags-inner"><?php the_tags('', ', ', ''); ?></div>
-</div>
+    <?php the_tags('', ', ', ''); ?>
+</p>

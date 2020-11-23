@@ -16,15 +16,10 @@ if (!have_posts()) {
 
 <main id="site-content" role="main">
     
-    <header class="archive-header has-text-align-center header-footer-group">
-        <div class="archive-header-inner section-inner medium">
-            <h1 class="archive-title">
-                <?php echo wp_kses_post(get_the_archive_title()); ?>
-            </h1>
-          
-            <div class="archive-subtitle section-inner thin max-percentage intro-text">
-                <?php echo wp_kses_post(wpautop(get_the_archive_description())); ?>
-            </div>
+    <header>
+        <h1 class="archive-title"><?php echo wp_kses_post(get_the_archive_title()); ?></h1>
+        <div class="archive-subtitle">
+            <?php echo wp_kses_post(wpautop(get_the_archive_description())); ?>
         </div>
     </header>
     

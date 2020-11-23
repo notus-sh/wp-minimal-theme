@@ -14,11 +14,9 @@ if (post_password_required()) {
 
 <?php if ($comments): ?>
     <div class="comments" id="comments">
-        <div class="comments-header section-inner small max-percentage">
-            <h2 class="comment-reply-title"><?php echo Comments::title(); ?></h2>
-        </div>
+        <h2 class="comment-reply-title"><?php echo Comments::title(); ?></h2>
 
-        <div class="comments-inner section-inner thin max-percentage">
+        <div class="comments-inner">
         
             <?php wp_list_comments(['style' => 'div']); ?>
           
@@ -28,22 +26,15 @@ if (post_password_required()) {
             </nav>
             <?php endif; ?>
 
-        </div><!-- .comments-inner -->
-    </div><!-- comments -->
+        </div>
+    </div>
 <?php endif; ?>
 
 <?php if (comments_open() || pings_open()): ?>
 
     <?php comment_form([
-        'class_form' => 'section-inner thin max-percentage',
         'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
         'title_reply_after' => '</h2>',
     ]); ?>
-    
-<?php elseif (is_single()): ?>
-    
-    <div class="comment-respond" id="respond">
-        <p class="comments-closed"><?php _e('Comments are closed.', 'mt'); ?></p>
-    </div>
 
 <?php endif; ?>
