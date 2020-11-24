@@ -1,0 +1,19 @@
+button,
+.button,
+.faux-button,
+.wp-block-button__link,
+.wp-block-file .wp-block-file__button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  background: var(--color-primary);
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+  padding: 0.25em 0.5em;
+  text-align: center;
+}

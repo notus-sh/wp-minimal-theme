@@ -1,0 +1,31 @@
+.pagination .nav-links {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+
+  font-size: 1.25em;
+  font-variant: small-caps;
+  font-weight: 700;
+}
+
+.pagination-separator {
+  margin: 5rem 0;
+}
+
+.nav-links > * {
+  margin: 1.5rem 0 0 2.5rem;
+}
+
+.nav-links .placeholder {
+  display: none;
+  visibility: hidden;
+}
+
+.pagination .dots {
+  transform: translateY(-0.3em);
+  color: var(--color-ternary);
+}
+
+.nav-short {
+  display: none;
+}

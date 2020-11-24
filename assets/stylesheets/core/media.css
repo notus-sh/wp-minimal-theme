@@ -1,0 +1,44 @@
+figure {
+  display: block;
+  margin: 0;
+}
+
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+video {
+  display: block;
+}
+
+svg,
+img,
+embed,
+object {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+figcaption,
+.wp-caption-text {
+  display: block;
+  font-weight: 600;
+  padding: 0.5rem;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  width: 100%;
+}
+
+.gallery-caption {
+  display: block;
+  font-weight: 600;
+  padding: 0.5rem;
+}

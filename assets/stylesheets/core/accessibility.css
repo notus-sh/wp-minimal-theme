@@ -1,0 +1,46 @@
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *:before,
+  *:after {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+  word-wrap: normal;
+  word-break: normal;
+}
+
+.screen-reader-text:focus {
+  display: block;
+  width: auto;
+  height: auto;
+  padding: 1rem 1.5rem;
+  clip: auto;
+
+  background-color: #FFFFFF;
+  color: #000000;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+
+  top: 0.125rem;
+  right: 0.125rem;
+  z-index: 100;
+}
+
+.skip-link {
+  left: -9999rem;
+  top: 0.5rem;
+}

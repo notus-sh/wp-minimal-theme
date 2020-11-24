@@ -1,0 +1,31 @@
+table {
+  border: 0.1rem solid var(--color-ternary);
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  margin: 4rem 0;
+  max-width: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+th,
+td {
+  border: 0.1rem solid var(--color-ternary);
+  overflow: visible;
+  padding: 0.5rem;
+}
+
+caption {
+  font-weight: 600;
+  padding: 0.5rem;
+}
+
+thead {
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
+th {
+  font-weight: 700;
+}

@@ -1,0 +1,28 @@
+.header-titles {
+  margin: 1.5rem 0;
+}
+
+.site-title,
+.site-description {
+  display: block;
+}
+
+.site-title {
+  font-size: 2.1rem;
+  line-height: 1;
+}
+
+.site-description {
+  font-size: 1.125rem;
+}
+
+.header-controls {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header-controls nav {
+  flex-grow: 4;
+}

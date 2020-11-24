@@ -1,0 +1,50 @@
+fieldset {
+  padding: 2rem;
+}
+
+legend {
+  font-size: 1.688rem;
+  font-weight: 700;
+  padding: 0.5rem;
+}
+
+label {
+  display: block;
+}
+
+label.inline,
+input[type="checkbox"] + label {
+  display: inline;
+}
+
+input[type="url"],
+input[type="email"],
+input[type="tel"] {
+  direction: ltr;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="week"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--color-ternary);
+  border-radius: 0;
+  padding: 0.25em 0.5em;
+}
+
+textarea {
+  height: 12rem;
+}

@@ -1,3 +1,30 @@
+@import "modern-css-reset/src/reset.css";
 
-@import "core/origin.css";
+@import "core/typography.css";
+@import "core/accessibility.css";
+
+@import "core/tables.css";
+@import "core/forms.css";
+@import "core/media.css";
+@import "core/buttons.css";
+
+@import "partials/layout.css";
+@import "partials/header.css";
+@import "partials/footer.css";
+
+@import "partials/navigation.css";
+@import "partials/pagination.css";
+
+@import "partials/blocks.css";
+@import "partials/alignments.css";
+
+@import "partials/search.css";
+
 @import "core/print.css";
+
+
+:root {
+  --color-primary: #cd2653;
+  --color-secondary: #ffffff;
+  --color-ternary: #f4f4f4;
+}
