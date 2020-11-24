@@ -4,3 +4,5 @@
 
 # Built assets
 /dist/
+
+/.env

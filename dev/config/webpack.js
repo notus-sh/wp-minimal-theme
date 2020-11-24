@@ -1,5 +1,10 @@
 "use strict";
 
+
+// Load configuration from .env
+require('dotenv').config();
+
+
 const path = require('path');
 const root = path.resolve(__dirname, '../../');
 
@@ -23,6 +28,7 @@ function assets_name(resourcePath, resourceQuery) {
 
 module.exports = (_env, argv) => {
   const env = _env || {};
+  const Env = process.env;
   const production = (env.hasOwnProperty('production') && env.production === true);
   
   let config = {
@@ -40,7 +46,7 @@ module.exports = (_env, argv) => {
     devtool: 'source-map',
     output: {
       path: path.resolve(root, 'dist'),
-      publicPath: '/wp-content/themes/mt/dist/',
+      publicPath: `${Env.THEME_PUBLIC_PATH}dist/`,
       filename: `javascripts/[name].js`
     },
     
@@ -50,6 +56,23 @@ module.exports = (_env, argv) => {
     module: { rules: [] },
     stats: 'minimal',
   };
+  
+  if (!production) {
+    config.devServer = {
+      stats: 'errors-only',
+      host: Env.WEBPACK_DEV_SERVER__HOST,
+      port: Env.WEBPACK_DEV_SERVER__PORT,
+      index: '',
+      proxy: {}
+    };
+  
+    config.devServer.proxy[`!${config.output.publicPath}**`] = {
+      target: Env.WEBPACK_DEV_SERVER__TARGET
+    };
+  
+    config.output.publicPath = `http://${Env.WEBPACK_DEV_SERVER__HOST}:${Env.WEBPACK_DEV_SERVER__PORT}${config.output.publicPath}`;
+    config.devServer.publicPath = config.output.publicPath;
+  }
   
   if (production) {
     config.devtool = false;
