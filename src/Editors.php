@@ -7,9 +7,7 @@ abstract class Editors
     public static function setup()
     {
         add_action('after_setup_theme', [self::class, 'support']);
-        
-        add_action('enqueue_block_editor_assets', [self::class, 'block'], 1, 1);
-        add_action('init', [self::class, 'classic']);
+        add_action('after_setup_theme', [self::class, 'styles']);
     }
     
     /**
@@ -31,26 +29,10 @@ abstract class Editors
     }
     
     /**
-     * Enqueue supplemental block editor styles.
+     * Enqueue editors stylesheet
      */
-    public static function block()
+    public static function styles()
     {
-        // Enqueue the editor styles.
-        wp_enqueue_style(
-            'mt-block-editor-styles',
-            get_theme_file_uri('/dist/stylesheets/blocks-editor.css'),
-            array(),
-            Theme::getVersion(),
-            'all'
-        );
-        //wp_style_add_data('mt-block-editor-styles', 'rtl', 'replace');
-    }
-    
-    /**
-     * Enqueue classic editor styles.
-     */
-    public static function classic()
-    {
-        add_editor_style(['/dist/stylesheets/classic-editor.css']);
+        add_editor_style(['/dist/stylesheets/editors.css']);
     }
 }

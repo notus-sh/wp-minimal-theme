@@ -1,0 +1,15 @@
+@import "variables.css";
+
+@import "core/typography.css";
+@import "core/tables.css";
+@import "core/media.css";
+@import "partials/blocks.css";
+@import "partials/alignments.css";
+
+.wp-block:not([data-align="wide"]):not([data-align="full"]) {
+  max-width: var(--base-width);
+}
+
+.wp-block[data-align="wide"] {
+  max-width: var(--wide-width);
+}

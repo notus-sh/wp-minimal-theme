@@ -1,0 +1,11 @@
+:root {
+  --color-primary: #cd2653;
+  --color-secondary: #ffffff;
+  --color-ternary: #f4f4f4;
+
+  --base-width: 55rem;
+  --wide-width: 65rem;
+}
+
+@custom-media --base-and-above  (min-width: 55rem);
+@custom-media --wide-and-above  (min-width: 65rem);

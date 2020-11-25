@@ -36,11 +36,10 @@ module.exports = (_env, argv) => {
     context: root,
     
     entry: {
-      "index": path.join(root, "assets/javascripts/main.js"),
+      "index":    path.join(root, "assets/javascripts/main.js"),
       
-      "main":           path.join(root, "assets/stylesheets/main.css"),
-      "blocks-editor":  path.join(root, "assets/stylesheets/blocks-editor.css"),
-      "classic-editor": path.join(root, "assets/stylesheets/classic-editor.css")
+      "main":     path.join(root, "assets/stylesheets/main.css"),
+      "editors":  path.join(root, "assets/stylesheets/editors.css")
     },
     
     devtool: 'source-map',
@@ -60,6 +59,7 @@ module.exports = (_env, argv) => {
   if (!production) {
     config.devServer = {
       stats: 'errors-only',
+      writeToDisk: true,
       host: Env.WEBPACK_DEV_SERVER__HOST,
       port: Env.WEBPACK_DEV_SERVER__PORT,
       index: '',
@@ -86,7 +86,7 @@ module.exports = (_env, argv) => {
   config.plugins.push(new MiniCssExtractPlugin({
     filename: `stylesheets/[name].css`
   }));
-  config.plugins.push(new IgnoreEmitPlugin(['main.js', /-editor\.js/]));
+  config.plugins.push(new IgnoreEmitPlugin(['main.js', 'editors.js']));
   
   let postCssOptions = {
     plugins: [
