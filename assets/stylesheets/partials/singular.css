@@ -1,0 +1,42 @@
+.entry-header,
+.entry-intro,
+.entry-content {
+  max-width: 55rem;
+  margin: 1.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.entry-header {
+  padding: 6rem 1.5rem;
+  color: var(--color-primary);
+}
+
+.header-cover {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.header-cover:before {
+  content: "";
+  background-color: var(--color-ternary);
+  opacity: 0.25;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.header-cover .entry-title {
+  position: relative;
+  text-shadow: 1px 1px 1px var(--color-ternary);
+  z-index: 5;
+}
+
+.entry-intro,
+.entry-content {
+  text-align: justify;
+}

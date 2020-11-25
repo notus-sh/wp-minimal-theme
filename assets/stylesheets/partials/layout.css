@@ -1,7 +1,5 @@
 #site-header {
-  max-width: 960px;
-  margin: 0 auto;
-  padding-bottom: 1.5rem;
+  padding: 1.5rem;
 }
 
 #site-content {
@@ -9,7 +7,5 @@
 }
 
 #site-footer {
-  max-width: 960px;
-  margin: 0 auto;
-  padding-top: 1.5rem;
+  padding: 1.5rem;
 }

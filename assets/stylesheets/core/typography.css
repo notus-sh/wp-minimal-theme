@@ -17,48 +17,56 @@ h4,
 h5,
 h6 {
   font-weight: 700;
-  margin: 0 0 3rem;
+  line-height: 1.15;
+  margin: 1.563rem 0 2.441rem;
 }
 
 h1,
 .heading-size-1 {
-  font-size: 3.052em;
+  font-size: 3.052rem;
 }
 
 h2,
 .heading-size-2 {
-  font-size: 2.441em;
+  font-size: 2.441rem;
 }
 
 h3,
 .heading-size-3 {
-  font-size: 1.953em;
+  font-size: 1.953rem;
 }
 
 h4,
 .heading-size-4 {
-  font-size: 1.563em;
+  font-size: 1.563rem;
 }
 
 h5,
 .heading-size-5 {
-  font-size: 1.25em;
-  font-variant: small-caps;
+  font-size: 1.25rem;
 }
 
 h6,
 .heading-size-6 {
-  font-size: 1.25em;
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-variant: small-caps;
 }
 
 p {
   line-height: 1.5;
-  margin: 0 0 1.5em;
+  margin: 0 0 1rem;
 }
 
 a {
   color: var(--color-primary);
   text-decoration: underline;
+}
+
+blockquote {
+  margin: 1.563rem 0;
+  padding: 0 1.563rem;
+  border-left: 3px solid var(--color-primary);
 }
 
 code,
@@ -67,6 +75,7 @@ pre,
 samp {
   font-family: monospace;
   padding: 0.5rem;
+  margin: 0 0 1rem;
 }
 
 pre {

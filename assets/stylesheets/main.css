@@ -15,8 +15,9 @@
 @import "partials/navigation.css";
 @import "partials/pagination.css";
 
+@import "partials/singular.css";
 @import "partials/blocks.css";
-@import "partials/alignments.css";
+/*@import "partials/alignments.css";*/
 
 @import "partials/search.css";
 

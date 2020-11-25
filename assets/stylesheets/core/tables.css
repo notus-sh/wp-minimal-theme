@@ -3,7 +3,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   empty-cells: show;
-  margin: 4rem 0;
+  margin: 1.563rem 0;
   max-width: 100%;
   overflow: hidden;
   width: 100%;
@@ -26,6 +26,11 @@ thead {
   white-space: nowrap;
 }
 
-th {
+th,
+tfoot td {
   font-weight: 700;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: var(--color-ternary);
 }

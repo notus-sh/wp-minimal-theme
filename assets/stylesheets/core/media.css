@@ -1,31 +1,20 @@
-figure {
-  display: block;
-  margin: 0;
-}
-
-iframe {
-  display: block;
-  max-width: 100%;
-}
-
-video {
-  display: block;
-}
-
+figure,
+iframe,
+audio,
+video,
 svg,
 img,
 embed,
 object {
   display: block;
+  width: 100%;
   height: auto;
-  max-width: 100%;
 }
 
 figcaption,
 .wp-caption-text {
   display: block;
-  font-weight: 600;
-  padding: 0.5rem;
+  font-style: italic;
 }
 
 .gallery {
